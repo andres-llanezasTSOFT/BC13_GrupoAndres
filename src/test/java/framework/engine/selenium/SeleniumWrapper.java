@@ -29,7 +29,7 @@ public class SeleniumWrapper {
         return driver.findElements(locator);
     }
 
-    public String getText (By locator){
+    public String getText(By locator){
         return driver.findElement(locator).getText();
     }
     public String getText(WebElement elemento){
@@ -109,6 +109,13 @@ public class SeleniumWrapper {
         WebElement ddlMes = driver.findElement(locator);
         Select selectorMes = new Select(ddlMes);
         selectorMes.selectByVisibleText(textoVisible);
+    }
+
+    public WebElement seleccionarBotonPortextoVisible(By locator,String textoVisible){
+        WebElement ddlMes = driver.findElement(locator);
+        Select selectorMes = new Select(ddlMes);
+        selectorMes.selectByVisibleText(textoVisible);
+        return ddlMes;
     }
 
     public void navigateTo(String url){
