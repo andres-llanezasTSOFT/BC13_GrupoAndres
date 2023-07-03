@@ -4,6 +4,8 @@ import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static framework.engine.utils.Constants.BASE_URL_AUT;
+
 public class BusquedaHotel extends SeleniumWrapper {
 
     public BusquedaHotel(WebDriver driver) {
@@ -11,7 +13,9 @@ public class BusquedaHotel extends SeleniumWrapper {
     }
 
 
-    By locatorCiudad = By.xpath("//input[@id=':r0:']");
+    By locatorCiudad = By.xpath("//input[contains(@placeholder, \"quieres ir\")]");
+
+    By locatorOpcionCiudadElegida = By.xpath("");
     By locatorFecha = By.xpath("//label[contains(text(),'Fecha de entrada')]");
     By locatorMesAnnoActual = By.xpath("//div[@aria-labelledby]//descendant-or-self::span");
     By btnMesPrevio = By.xpath("//button[contains(@aria-label, \"Previous\")]");
@@ -23,28 +27,32 @@ public class BusquedaHotel extends SeleniumWrapper {
     By btnBuscar = By.xpath("//button[@type='submit']");
     By locatorEdadNinnos = By.xpath("//ul//li[contains(.,\"Edad al viajar\")]");
 
-    public void buscarHotel(String ciudad, String mesAnno, String diaPartida, String diaVuelta,
-                            String cantPersonas, String edadNinnos) {
+    By annadirHabitacion = By.xpath("//button[contains(text(), \"Añadir\")]");
 
+    public void buscarHotel(String ciudad, String mesAnno, String diaPartida, String diaVuelta,
+                            String cantAdultos, int cantNinnos) {
+
+        click(esperarPorElemento(locatorCiudad));
         agregarTexto(esperarPorElemento(locatorCiudad), ciudad);
         esperarXSegundos(500);
         if (isDisplayed(locatorMesAnnoActual)) {
             seleccionarFechas(mesAnno, diaPartida, diaVuelta);
         }
         esperarXSegundos(500);
-        seleccionarComboBoxPortextoVisible(locatorPersonas, cantPersonas);
+        seleccionarComboBoxPortextoVisible(locatorPersonas, cantAdultos);
+        if (cantNinnos > 0) {
+            int ninno = 0;
+            while (ninno != cantNinnos) {
+                annadirNinnosHabitacion("2 años");
+                ninno++;
+            }
+        }
         esperarXSegundos(500);
         click(esperarPorElemento(btnAumentarNroAdultos));
         esperarXSegundos(500);
-        click(esperarPorElemento(btnAnnadirNinnos));
-        esperarXSegundos(500);
-        if (isDisplayed(locatorEdadNinnos)) {
-            seleccionarComboBoxPortextoVisible(locatorEdadNinnos, edadNinnos);
-        }
         esperarXSegundos(500);
         click(esperarPorElemento(btnBuscar));
     }
-
 
     public void seleccionarFechas(String fecha, String checkInDate, String checkOutDate) {
 
@@ -52,7 +60,10 @@ public class BusquedaHotel extends SeleniumWrapper {
 
         while (true) {
             if (getText(locatorMesAnnoActual).equals(fecha)) {
-                break;
+                if (isEnabled(locatorOpcionDia)) {
+                    click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkInDate));
+                    click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkOutDate));
+                }
             } else if (getText(locatorMesAnnoActual).compareTo(fecha) > 0) {
                 click(btnMesPrevio);
             } else {
@@ -60,12 +71,22 @@ public class BusquedaHotel extends SeleniumWrapper {
             }
         }
 
-        if(isEnabled(locatorOpcionDia)) {
-            click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkInDate));
-            click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkOutDate));
-        }
 
-}
+
+    }
+
+
+    public void annadirNinnosHabitacion(String edadNinnos) {
+        click(esperarPorElemento(btnAnnadirNinnos));
+        esperarXSegundos(500);
+        if (isDisplayed(locatorEdadNinnos)) {
+            seleccionarComboBoxPortextoVisible(locatorEdadNinnos, edadNinnos);
+            esperarXSegundos(500);
+        }else{
+            esperarXSegundos(500);
+            click(esperarPorElemento(annadirHabitacion));
+        }
+    }
 
 
 }
