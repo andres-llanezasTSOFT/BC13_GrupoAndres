@@ -110,6 +110,16 @@ public class SeleniumWrapper {
         Select selectorMes = new Select(ddlMes);
         selectorMes.selectByVisibleText(textoVisible);
     }
+    public void cargarUrl(String url){
+        driver.get(url);
+    }
+
+    public void maximizarBrowser(){
+        this.driver.manage().window().maximize();
+    }
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public WebElement seleccionarBotonPortextoVisible(By locator,String textoVisible){
         WebElement ddlMes = driver.findElement(locator);

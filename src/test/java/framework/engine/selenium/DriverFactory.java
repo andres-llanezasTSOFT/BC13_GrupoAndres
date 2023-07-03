@@ -36,6 +36,13 @@ public class DriverFactory {
                 getDriver().manage().window().maximize();
                 getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
                 return getDriver();
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                hiloLocal.set(new ChromeDriver());
+                getDriver().manage().deleteAllCookies();
+                getDriver().manage().window().maximize();
+                getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                return getDriver();
             default:
                 throw new RuntimeException("Navegador no configurado: " + browser);
         }
@@ -50,6 +57,9 @@ public class DriverFactory {
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
+            /*case "chrome":
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();*/
             default:
                 throw new RuntimeException("Error en el webdriver: " + webDriver);
         }
