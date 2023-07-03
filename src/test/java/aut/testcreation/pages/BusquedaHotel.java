@@ -1,4 +1,4 @@
-package aut.testcreation.pages;
+/*package aut.testcreation.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
@@ -69,3 +69,4 @@ public class BusquedaHotel extends SeleniumWrapper {
 
 
 }
+*/
