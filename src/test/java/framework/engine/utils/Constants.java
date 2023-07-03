@@ -14,6 +14,8 @@ public class Constants {
     public static final String BASE_URL_API = properties.getProperty("url.api");
     public static final String BASE_URL_AUT = properties.getProperty("url.aut");
 
+    public static final String BASE_URL_AUT2 = properties.getProperty("url.aut2");
+
     public static final String LOGIN = properties.getProperty("login.admin.aut");
     public static final String PASSWORD = properties.getProperty("password.admin.aut");
 }
