@@ -25,13 +25,24 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irIdayVuelta();
-        rumbopage.irSeleccionClase();
-        rumbopage.irSeleccionPasajero();
+        rumbopage.preferencias("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
 
-       /* registerPage.completarFormularioRegistro("","awedawseddasdas",
-                "Domingo","30","Marzo","1990",0);
-        Assertions.assertEquals(FixEncoding.fix("Es necesario que indiques tu correo electrónico."),
-                registerPage.obtenerErrorMailVacio());*/
     }
+
+    @Test
+    public void TC002_reserva_vuelo_ida_ingreso_fecha(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        rumbopage.preferencias("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+
+    }
+
+
 }
