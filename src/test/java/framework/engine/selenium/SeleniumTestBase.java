@@ -19,10 +19,9 @@ public class SeleniumTestBase {
     private WebDriver driver;
     static Properties properties;
     private RumboHomePage rumbopage;
-
     private ElegirVuelo elegirVuelo;
 
-   /* @BeforeEach
+  /*@BeforeEach
     public void preTests(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -32,7 +31,8 @@ public class SeleniumTestBase {
         rumbopage.maximizarBrowser();
     }*/
 
-   /* @AfterEach
+
+   /*@AfterEach
     public void postTest(){
         driver.close();
     }*/
@@ -49,9 +49,9 @@ public class SeleniumTestBase {
         driver = driverFactory.inicializarDriver(browserName);
     }
 
-    @AfterEach
+   /* @AfterEach
     void close(){
         driver.quit();
-    }
+    }*/
 
 }
