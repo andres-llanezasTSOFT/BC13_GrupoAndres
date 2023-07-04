@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static framework.engine.utils.Constants.BASE_URL_AUT;
+
 public class SeleniumWrapper {
 
     private final WebDriver driver;
@@ -49,6 +51,7 @@ public class SeleniumWrapper {
     public void click(WebElement elemento){
         elemento.click();
     }
+    public void navegarAlSitio () {navigateTo(BASE_URL_AUT);}
 
 
     public void agregarTexto(WebElement elemento,String texto){
