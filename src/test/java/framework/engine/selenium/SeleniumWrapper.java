@@ -122,10 +122,10 @@ public class SeleniumWrapper {
     }
 
     public WebElement seleccionarBotonPortextoVisible(By locator,String textoVisible){
-        WebElement ddlMes = driver.findElement(locator);
-        Select selectorMes = new Select(ddlMes);
-        selectorMes.selectByVisibleText(textoVisible);
-        return ddlMes;
+        WebElement contenedor = driver.findElement(locator);
+        Select selectorElemento = new Select(contenedor);
+        selectorElemento.selectByVisibleText(textoVisible);
+        return contenedor;
     }
 
     public void navigateTo(String url){
@@ -134,6 +134,17 @@ public class SeleniumWrapper {
 
     public String getUrlTitle(){
         return driver.getTitle();
+    }
+
+    public int extraer_int_de_String(By locator) {
+        String resultado = findElement(locator).getText();
+        StringBuilder sb = new StringBuilder();
+        for (char c : resultado.toCharArray()) {
+            if (Character.isDigit(c)) {
+                sb.append(c);
+            }
+        }
+        return Integer.parseInt(sb.toString());
     }
 
 

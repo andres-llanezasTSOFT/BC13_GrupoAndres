@@ -1,4 +1,4 @@
-package aut.testcreation.pages;
+/*package aut.testcreation.pages;
 
 
 import framework.engine.selenium.FixEncoding;
@@ -69,3 +69,6 @@ public class RegisterPage extends SeleniumWrapper {
         return getText(esperarPorElemento(locatorErrorCorreoVacio));
     }
 }
+
+*/
+

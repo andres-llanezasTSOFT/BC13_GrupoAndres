@@ -9,27 +9,26 @@ public class FiltrosHotel extends SeleniumWrapper {
         super(driver);
     }
     By locatorFiltroPrecio = By.xpath("//div[@id='Pill-PriceContainer']");
-    By btnRangoMínimo = By.xpath("");
-    By btnRangoMaximo = By.xpath("");
-    By btnAplicarPrecio = By.xpath("");
+    By btnRangoMínimo = By.xpath("//div[@data-type='left']");
+    By btnRangoMaximo = By.xpath("//div[@data-type='right']");
+    By btnAplicar = By.xpath("//div[contains(text(),\"Aplicar\")]");
 
-    By locatorFiltroServicio = By.xpath("");
-    By locatorServicio = By.xpath("");
-    By btnAplicarServicios = By.xpath("");
+    By locatorFiltroServicio = By.cssSelector("#Pill-FacilitiesContainer");
+    By locatorServicio = By.cssSelector("#lb_list_accomodation_facilities");
 
-    By locatorFiltroValoracion = By.xpath("");
-    By locatorValoracion = By.xpath("");
-    By btnAplicarValoracion = By.xpath("");
 
-    By locatorFiltroEstrellas = By.xpath("");
+    By locatorFiltroValoracion = By.cssSelector("#Pill-RatingContainer");
+    By locatorValoracion = By.xpath("//li[contains(@id, \"exp_elem_rating\")]");
+
+
+    By locatorFiltroEstrellas = By.cssSelector("#Pill-StarsContainer");
     By locatorCantEstrellas = By.xpath("");
-    By btnAplicarEstrellas = By.xpath("");
 
-    By locatorFiltroRegimen = By.xpath("");
+
+    By locatorFiltroRegimen = By.xpath("#Pill-MealContainer");
     By locatorRegimen = By.xpath("");
-    By btnAplicarRegimen = By.xpath("");
 
-    By btnPrecioHotel = By.xpath("");
+    By btnPrecioHotel = By.xpath("//iframe[@id='google_ads_top_frame']");
 
     By locatorCantidadResultadosBusqueda = By.xpath("");
 
@@ -40,47 +39,38 @@ public class FiltrosHotel extends SeleniumWrapper {
 
 //VER_____________________________________________________________________________________________________________
 
-    private int extraer_int_de_String(By locator) {
-        String resultado = findElement(locator).getText();
-        StringBuilder sb = new StringBuilder();
-        for (char c : resultado.toCharArray()) {
-            if (Character.isDigit(c)) {
-                sb.append(c);
-            }
-        }
-        return Integer.parseInt(sb.toString());
-    }
+
 
     public void filtro_precio(String valor1, String valor2){
         click(esperarPorElemento(locatorFiltroPrecio));
         //mover btnRangoMinimo y btnRangoMaximo hasta que queden iguales a los valores pasados por string
-        click(btnAplicarPrecio);
+        click(btnAplicar);
     }
     public void filtro_servicios_una_condicion(String item){
         click(esperarPorElemento(locatorFiltroServicio));
-        click(seleccionarComboBoxPortextoVisible(locatorServicio,item));
-        click(btnAplicarServicios);
+        seleccionarComboBoxPortextoVisible(locatorServicio,item);
+        click(btnAplicar);
     }
     public void filtro_servicios_dos_condiciones(String item1, String item2){
         click(esperarPorElemento(locatorFiltroServicio));
-        click(seleccionarComboBoxPortextoVisible(locatorServicio,item1));
-        click(seleccionarComboBoxPortextoVisible(locatorServicio,item2));
-        click(btnAplicarServicios);
+        seleccionarComboBoxPortextoVisible(locatorServicio,item1);
+        seleccionarComboBoxPortextoVisible(locatorServicio,item2);
+        click(btnAplicar);
     }
     public void filtro_valoracion(String valor){
-        click(esperarPorElemento(locatorFiltroValoracion));
-        click(seleccionarComboBoxPortextoVisible(locatorValoracion,valor));
-        click(btnAplicarValoracion);
+        esperarPorElemento(locatorFiltroValoracion);
+        seleccionarComboBoxPortextoVisible(locatorValoracion,valor);
+        click(btnAplicar);
     }
     public void filtro_estrellas(String cantidad){
         click(esperarPorElemento(locatorFiltroEstrellas));
-        click(seleccionarComboBoxPortextoVisible(locatorCantEstrellas,cantidad));
-        click(btnAplicarEstrellas);
+        seleccionarComboBoxPortextoVisible(locatorCantEstrellas,cantidad);
+        click(btnAplicar);
     }
     public void filtro_regimen(String condicion){
         click(esperarPorElemento(locatorFiltroRegimen));
-        click(seleccionarComboBoxPortextoVisible(locatorRegimen,condicion));
-        click(btnAplicarRegimen);
+        seleccionarComboBoxPortextoVisible(locatorRegimen,condicion);
+        click(btnAplicar);
     }
 
 

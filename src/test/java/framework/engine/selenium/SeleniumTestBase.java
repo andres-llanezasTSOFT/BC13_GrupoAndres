@@ -2,7 +2,7 @@ package framework.engine.selenium;
 
 import aut.testcreation.pages.ElegirVuelo;
 import aut.testcreation.pages.RumboHomePage;
-import aut.testcreation.pages.RegisterPage;
+//import aut.testcreation.pages.RegisterPage;
 import framework.engine.utils.LoadProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
@@ -18,11 +18,9 @@ public class SeleniumTestBase {
     private DriverFactory driverFactory;
     private WebDriver driver;
     static Properties properties;
-    private RumboHomePage rumbopage;
 
-    private ElegirVuelo elegirVuelo;
 
-   /* @BeforeEach
+    /*@BeforeEach
     public void preTests(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -30,12 +28,14 @@ public class SeleniumTestBase {
         elegirVuelo = new ElegirVuelo(rumbopage.getDriver());
         rumbopage.cargarUrl("https://www.rumbo.es/");
         rumbopage.maximizarBrowser();
-    }*/
+    }
 
-   /* @AfterEach
+     */
+
+    @AfterEach
     public void postTest(){
         driver.close();
-    }*/
+    }
 
     @BeforeAll
     public static void LoadProperties() {

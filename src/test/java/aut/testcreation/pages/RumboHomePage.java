@@ -18,7 +18,10 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorIrAVuelo = By.xpath("//button[@aria-label='Buscar']");
 
+    By locatorIrAHotel = By.xpath("//button[@aria-label='Hoteles']");
+
     By locatorOrigen = By.id(":Riqid6lalallbla2mm:");
+
 
     By locatorSeleccionPasajero = By.xpath("//button[@class='d-1k0nsg5']");
 
@@ -42,9 +45,9 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorMultidestino));
     }
 
-    public void irAVuelo(){
-        click((esperarPorElemento(locatorIrAVuelo)));
-    }
+    public void irAVuelo(){ click((esperarPorElemento(locatorIrAVuelo))); }
+
+    public void irABusquedaHotel(){ click((esperarPorElemento(locatorIrAHotel))); }
     public void irSeleccionClase(){
         click(esperarPorElemento(locatorSeleccionClase));
     }

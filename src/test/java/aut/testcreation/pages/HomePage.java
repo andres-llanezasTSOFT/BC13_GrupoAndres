@@ -1,4 +1,4 @@
-package aut.testcreation.pages;
+/*package aut.testcreation.pages;
 
 
 import framework.engine.selenium.SeleniumWrapper;
@@ -24,3 +24,4 @@ public class HomePage extends SeleniumWrapper {
         navigateTo(BASE_URL_AUT);
     }
 }
+ */

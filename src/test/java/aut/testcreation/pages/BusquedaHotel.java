@@ -2,6 +2,7 @@ package aut.testcreation.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
@@ -12,16 +13,13 @@ public class BusquedaHotel extends SeleniumWrapper {
         super(driver);
     }
 
-
     By locatorCiudad = By.xpath("//input[contains(@placeholder, \"quieres ir\")]");
-
-    By locatorOpcionCiudadElegida = By.xpath("");
-    By locatorFecha = By.xpath("//label[contains(text(),'Fecha de entrada')]");
-    By locatorMesAnnoActual = By.xpath("//div[@aria-labelledby]//descendant-or-self::span");
+    By locatorFecha = By.xpath("//button[contains(@aria-label, \"Fecha de entrada\")]");
+    By locatorMesAnnoActual = By.className("//span[@class= \"d-tmbbn\"]");
     By btnMesPrevio = By.xpath("//button[contains(@aria-label, \"Previous\")]");
     By btnMesSiguiente = By.xpath("//button[contains(@aria-label, \"Next\")]");
     By locatorOpcionDia = By.xpath("//div[@aria-labelledby]//descendant-or-self::button");
-    By locatorPersonas = By.xpath("//label[contains(text(),'Personas')]");
+    By locatorPersonas = By.xpath("//span[contains(text(), \"1 hu\")]");
     By btnAumentarNroAdultos = By.xpath("//button[contains(@aria-label, \"Aumentar el número de adultos\") and @xpath =\"2\"]");
     By btnAnnadirNinnos = By.xpath("//button[contains(@aria-label, \"Aumentar el número de niños\")] //span[@xpath=\"2\"]");
     By btnBuscar = By.xpath("//button[@type='submit']");
@@ -34,6 +32,8 @@ public class BusquedaHotel extends SeleniumWrapper {
 
         click(esperarPorElemento(locatorCiudad));
         agregarTexto(esperarPorElemento(locatorCiudad), ciudad);
+        sendKeys(Keys.ENTER,locatorCiudad);
+        click(esperarPorElemento(locatorFecha));
         esperarXSegundos(500);
         if (isDisplayed(locatorMesAnnoActual)) {
             seleccionarFechas(mesAnno, diaPartida, diaVuelta);
