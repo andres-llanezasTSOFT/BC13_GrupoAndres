@@ -32,5 +32,18 @@ public class Test_Vuelo extends SeleniumTestBase {
 
     }
 
+    @Test
+    public void TC002_reserva_vuelo_ida_ingreso_fecha(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        rumbopage.preferencias("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+
+    }
+
 
 }
