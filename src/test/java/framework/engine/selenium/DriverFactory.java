@@ -57,9 +57,9 @@ public class DriverFactory {
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
-            /*case "chrome":
+            case "chrome":
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();*/
+                return new ChromeDriver();
             default:
                 throw new RuntimeException("Error en el webdriver: " + webDriver);
         }

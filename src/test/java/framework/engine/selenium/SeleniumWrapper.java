@@ -105,7 +105,7 @@ public class SeleniumWrapper {
         }
     }
 
-    public void seleccionarComboBoxPortextoVisible(By locator,String textoVisible){
+   public void seleccionarComboBoxPortextoVisible(By locator,String textoVisible){
         WebElement ddlMes = driver.findElement(locator);
         Select selectorMes = new Select(ddlMes);
         selectorMes.selectByVisibleText(textoVisible);
