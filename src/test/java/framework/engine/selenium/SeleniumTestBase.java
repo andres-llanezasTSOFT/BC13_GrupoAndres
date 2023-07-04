@@ -56,7 +56,8 @@ public class SeleniumTestBase {
         driver = driverFactory.inicializarDriver(browserName);
     }
 
-    @AfterEach
+
+   @AfterEach
     void close(){
         driver.quit();
     }
