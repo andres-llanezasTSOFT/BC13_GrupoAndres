@@ -18,21 +18,22 @@ public class Test_Hotel extends SeleniumTestBase {
        rumbopage = new RumboHomePage(DriverFactory.getDriver());
        busquedaHotel = new BusquedaHotel(DriverFactory.getDriver());
        rumbopage.cargarUrl("https://www.rumbo.es/");
+       rumbopage.validarCaptcha();
+       rumbopage.esperarXSegundos(2000);
        rumbopage.noCookies();
    }
 
     @Test
     public void CP013_reserva_hotel_ingreso_datos_de_seleccion(){
         rumbopage.irABusquedaHotel();
-        busquedaHotel.buscarHotel("Buenos Aires", "Julio 2023", "16", "18", "2", 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         Assertions.assertTrue(busquedaHotel.getUrlTitle().contains("https://www.rumbo.es/s/hdp/search?datefrom"));
     }
 
-    //HACER+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Test
     public void CP014_reserva_hotel_filtro_precio(){
         rumbopage.irABusquedaHotel();
-        busquedaHotel.buscarHotel("Buenos Aires", "Julio 2023", "16", "18", "2", 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         int resultado1= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_precio("1200", "2000");
         int resultado2= filtrosHotel.ver_cantidad_resultados();
@@ -44,14 +45,14 @@ public class Test_Hotel extends SeleniumTestBase {
     @Test
     public void CP016_reserva_hotel_filtro_valoracion(){
         rumbopage.irABusquedaHotel();
-        busquedaHotel.buscarHotel("Buenos Aires", "Julio 2023", "16", "18", "2", 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         Assertions.assertTrue(busquedaHotel.getUrlTitle().contains("https://www.rumbo.es/s/hdp/search?datefrom"));
     }
 
     @Test
     public void CP017_reserva_hotel_limite_ninnos_por_habitacion(){
         rumbopage.irABusquedaHotel();
-        busquedaHotel.buscarHotel("Buenos Aires", "Julio 2023", "16", "18", "1", 6);
+        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
         Assertions.assertTrue(filtrosHotel.ver_detalle().contains("8 viajeros, 2 habitaciones") );
     }
 
@@ -60,7 +61,7 @@ public class Test_Hotel extends SeleniumTestBase {
     @Test
     public void CP018_reserva_hotel_filtros_multiples(){
         rumbopage.irABusquedaHotel();
-        busquedaHotel.buscarHotel("Buenos Aires", "Julio 2023", "16", "18", "2", 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         int resultado1= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_precio("1200", "2000");
         int resultado2= filtrosHotel.ver_cantidad_resultados();

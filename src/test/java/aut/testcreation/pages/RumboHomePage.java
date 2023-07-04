@@ -34,7 +34,9 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorTurista = By.xpath("//body/div[2]/div[3]/div[1]/section[1]/ul[1]/li[2]");
     By locatorNoCookies = By.xpath("//button[@class='iubenda-cs-reject-btn iubenda-cs-btn-primary']");
+    By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
 
+    By btnCheckCaptcha = By.xpath("//input[@type=\"checkbox\"]");
     //acciones del sitio
     public void irASoloIda() {
         click(esperarPorElemento(locatorIda));
@@ -88,7 +90,20 @@ public class RumboHomePage extends SeleniumWrapper {
         }
 
         public void noCookies () {
-            click(esperarPorElemento(locatorNoCookies));
+            if(isDisplayed(locatorNoCookies)) {
+                click(esperarPorElemento(locatorNoCookies));
+            }
+        }
+
+        public void validarCaptcha () {
+            esperarXSegundos(800);
+            if (isDisplayed(locatorCaptchaExiste)) {
+                esperarXSegundos(7000);
+                if(isEnabled(btnCheckCaptcha)){
+                    click(esperarPorElemento(btnCheckCaptcha));
+                }
+            }
+
         }
 
         public void navegarAlSitio () {
