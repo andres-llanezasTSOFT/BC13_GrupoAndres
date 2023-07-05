@@ -1,8 +1,7 @@
-/*package aut.testcreation.pages;
+package aut.testcreation.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class BusquedaHotel extends SeleniumWrapper {
 
@@ -10,63 +9,72 @@ public class BusquedaHotel extends SeleniumWrapper {
         super(driver);
     }
 
-
-    By locatorCiudad = By.xpath("//input[@id=':r0:']");
-    By locatorFecha = By.xpath("//label[contains(text(),'Fecha de entrada')]");
-    By locatorMesAnnoActual = By.xpath("//div[@aria-labelledby]//descendant-or-self::span");
-    By btnMesPrevio = By.xpath("//button[contains(@aria-label, \"Previous\")]");
-    By btnMesSiguiente = By.xpath("//button[contains(@aria-label, \"Next\")]");
-    By locatorOpcionDia = By.xpath("//div[@aria-labelledby]//descendant-or-self::button");
-    By locatorPersonas = By.xpath("//label[contains(text(),'Personas')]");
-    By btnAumentarNroAdultos = By.xpath("//button[contains(@aria-label, \"Aumentar el número de adultos\") and @xpath =\"2\"]");
+    By locatorCiudad = By.xpath("//input[contains(@placeholder, \"quieres ir\")]");
+    By locatorFecha = By.xpath("//button[contains(@aria-label, \"Fecha de entrada\")]");
+    By locatorPersonas = By.xpath("//div/label[contains(text(),\"Personas\")]");
+    By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
     By btnAnnadirNinnos = By.xpath("//button[contains(@aria-label, \"Aumentar el número de niños\")] //span[@xpath=\"2\"]");
-    By btnBuscar = By.xpath("//button[@type='submit']");
     By locatorEdadNinnos = By.xpath("//ul//li[contains(.,\"Edad al viajar\")]");
+    By annadirHabitacion = By.xpath("//button[contains(text(), \"Añadir\")]");
+    By locatorOpcionDia;
+    By btnAceptar = By.xpath("//button[@type=\"submit\"]");
+    //By btnAceptar = By.xpath("//button[@aria-label=\"buscar\"]");
 
-    public void buscarHotel(String ciudad, String mesAnno, String diaPartida, String diaVuelta,
-                            String cantPersonas, String edadNinnos) {
+    public By crear_locator_dia(String number){
+        return locatorOpcionDia = By.xpath("//button[contains(text(),"+ number+")]");
+    }
+
+    public void buscarHotel(String ciudad, String diaPartida, String diaVuelta,
+                            int cantAdultos, int cantNinnos) {
 
         agregarTexto(esperarPorElemento(locatorCiudad), ciudad);
         esperarXSegundos(500);
-        if (isDisplayed(locatorMesAnnoActual)) {
-            seleccionarFechas(mesAnno, diaPartida, diaVuelta);
+        click(esperarPorElemento(locatorFecha));
+        click(crear_locator_dia(diaPartida));
+        click(crear_locator_dia(diaVuelta));
+        esperarXSegundos(500);
+        annadirAdultos(cantAdultos);
+
+        if (cantNinnos != 0) {
+            int ninno = 0;
+            while (ninno != cantNinnos) {
+                annadirNinnosHabitacion("2 años");
+                ninno++;
+            }
+            click(esperarPorElemento(locatorPersonas));
         }
-        esperarXSegundos(500);
-        seleccionarComboBoxPortextoVisible(locatorPersonas, cantPersonas);
-        esperarXSegundos(500);
-        click(esperarPorElemento(btnAumentarNroAdultos));
-        esperarXSegundos(500);
+        esperarXSegundos(8000);
+       buscar();
+    }
+
+
+    private void annadirAdultos(int cantAdultos) {
+        if(cantAdultos>2){
+            for(int i=2;i<cantAdultos;i++) {
+                click(esperarPorElemento(btnAumentarNroAdultos));
+                esperarXSegundos(500);
+            }
+            click(esperarPorElemento(locatorPersonas));
+
+        }
+        else{click(esperarPorElemento(locatorPersonas));}
+    }
+
+    public void buscar(){
+        click(esperarPorElemento(btnAceptar));
+    }
+
+    public void annadirNinnosHabitacion(String edadNinnos) {
         click(esperarPorElemento(btnAnnadirNinnos));
         esperarXSegundos(500);
         if (isDisplayed(locatorEdadNinnos)) {
             seleccionarComboBoxPortextoVisible(locatorEdadNinnos, edadNinnos);
+            esperarXSegundos(500);
+        }else{
+            esperarXSegundos(500);
+            click(esperarPorElemento(annadirHabitacion));
         }
-        esperarXSegundos(500);
-        click(esperarPorElemento(btnBuscar));
     }
 
 
-    public void seleccionarFechas(String fecha, String checkInDate, String checkOutDate) {
-
-        click(esperarPorElemento(locatorFecha));
-
-        while (true) {
-            if (getText(locatorMesAnnoActual).equals(fecha)) {
-                break;
-            } else if (getText(locatorMesAnnoActual).compareTo(fecha) > 0) {
-                click(btnMesPrevio);
-            } else {
-                click(btnMesSiguiente);
-            }
-        }
-
-        if(isEnabled(locatorOpcionDia)) {
-            click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkInDate));
-            click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkOutDate));
-        }
-
 }
-
-
-}
-*/

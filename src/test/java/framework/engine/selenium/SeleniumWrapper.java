@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static framework.engine.utils.Constants.BASE_URL_AUT;
+
 public class SeleniumWrapper {
 
     private final WebDriver driver;
@@ -49,6 +51,7 @@ public class SeleniumWrapper {
     public void click(WebElement elemento){
         elemento.click();
     }
+    public void navegarAlSitio () {navigateTo(BASE_URL_AUT);}
 
 
     public void agregarTexto(WebElement elemento,String texto){
@@ -122,10 +125,10 @@ public class SeleniumWrapper {
     }
 
     public WebElement seleccionarBotonPortextoVisible(By locator,String textoVisible){
-        WebElement ddlMes = driver.findElement(locator);
-        Select selectorMes = new Select(ddlMes);
-        selectorMes.selectByVisibleText(textoVisible);
-        return ddlMes;
+        WebElement contenedor = driver.findElement(locator);
+        Select selectorElemento = new Select(contenedor);
+        selectorElemento.selectByVisibleText(textoVisible);
+        return contenedor;
     }
 
     public void navigateTo(String url){
@@ -136,21 +139,19 @@ public class SeleniumWrapper {
         return driver.getTitle();
     }
 
-    public void seleccionarMes(By locator, String texto){
-        while(true){
-            String text = driver.findElement(locator).getAttribute("innerHTML");
-
-            if(text.equals(texto)){
-                break;
-            }
-            else {
-                driver.findElement(locator).click();
+    public int extraer_int_de_String(By locator) {
+        String resultado = findElement(locator).getText();
+        StringBuilder sb = new StringBuilder();
+        for (char c : resultado.toCharArray()) {
+            if (Character.isDigit(c)) {
+                sb.append(c);
             }
         }
+        return Integer.parseInt(sb.toString());
     }
 
-    public void mesSiguiente(By locator){
 
-    }
+
+
 
 }

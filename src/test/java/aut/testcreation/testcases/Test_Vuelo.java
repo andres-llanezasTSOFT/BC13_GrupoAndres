@@ -2,6 +2,7 @@ package aut.testcreation.testcases;
 
 import aut.testcreation.pages.ElegirVuelo;
 import aut.testcreation.pages.RumboHomePage;
+//import aut.testcreation.pages.RegisterPage;
 import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.FixEncoding;
 import framework.engine.selenium.SeleniumTestBase;

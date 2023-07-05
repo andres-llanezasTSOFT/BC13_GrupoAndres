@@ -2,7 +2,7 @@ package framework.engine.selenium;
 
 import aut.testcreation.pages.ElegirVuelo;
 import aut.testcreation.pages.RumboHomePage;
-import aut.testcreation.pages.RegisterPage;
+//import aut.testcreation.pages.RegisterPage;
 import framework.engine.utils.LoadProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
@@ -10,17 +10,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Properties;
 
 public class SeleniumTestBase {
 
     private DriverFactory driverFactory;
-    protected WebDriver driver;
+    private WebDriver driver;
     static Properties properties;
 
-    private WebDriverWait wait;
+
 
 
   /*@BeforeEach
@@ -31,36 +30,36 @@ public class SeleniumTestBase {
         elegirVuelo = new ElegirVuelo(rumbopage.getDriver());
         rumbopage.cargarUrl("https://www.rumbo.es/");
         rumbopage.maximizarBrowser();
-    }*/
+    }
+     */
 
 
-   /*@AfterEach
+
+  /* @AfterEach
     public void postTest(){
         driver.close();
-    }*/
+    }
+
+   */
+
+
 
     @BeforeAll
     public static void LoadProperties() {
-
         properties = LoadProperties.loadProperties();
-
     }
 
     @BeforeEach
     void webDriverSetup(){
-        WebDriverManager.chromedriver().setup();
-        //driver = new ChromeDriver();
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
     }
 
-   /* @AfterEach
+
+   @AfterEach
     void close(){
         driver.quit();
-    }*/
-
-
-
+    }
 
 }
