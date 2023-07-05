@@ -1,11 +1,7 @@
 package aut.testcreation.pages;
 
 import framework.engine.selenium.SeleniumWrapper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-
-import static framework.engine.utils.Constants.BASE_URL_AUT;
+import org.openqa.selenium.*;
 
 public class BusquedaHotel extends SeleniumWrapper {
 
@@ -22,6 +18,7 @@ public class BusquedaHotel extends SeleniumWrapper {
     By annadirHabitacion = By.xpath("//button[contains(text(), \"Añadir\")]");
     By locatorOpcionDia;
     By btnAceptar = By.xpath("//button[@type=\"submit\"]");
+    //By btnAceptar = By.xpath("//button[@aria-label=\"buscar\"]");
 
     public By crear_locator_dia(String number){
         return locatorOpcionDia = By.xpath("//button[contains(text(),"+ number+")]");
@@ -47,8 +44,9 @@ public class BusquedaHotel extends SeleniumWrapper {
             click(esperarPorElemento(locatorPersonas));
         }
         esperarXSegundos(8000);
-       click(findElement(btnAceptar));
+       buscar();
     }
+
 
     private void annadirAdultos(int cantAdultos) {
         if(cantAdultos>2){
@@ -62,29 +60,9 @@ public class BusquedaHotel extends SeleniumWrapper {
         else{click(esperarPorElemento(locatorPersonas));}
     }
 
-   /* public void seleccionarFechas(String fecha, String checkInDate, String checkOutDate) {
-
-        click(esperarPorElemento(locatorFecha));
-
-        while (true) {
-            if (getText(locatorMesAnnoActual).equals(fecha)) {
-                if (isEnabled(locatorOpcionDia)) {
-                    click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkInDate));
-                    click(seleccionarBotonPortextoVisible(locatorOpcionDia, checkOutDate));
-                }
-            } else if (getText(locatorMesAnnoActual).compareTo(fecha) > 0) {
-                click(btnMesPrevio);
-            } else {
-                click(btnMesSiguiente);
-            }
-        }
-
-    */
-
-
-
-
-
+    public void buscar(){
+        click(esperarPorElemento(btnAceptar));
+    }
 
     public void annadirNinnosHabitacion(String edadNinnos) {
         click(esperarPorElemento(btnAnnadirNinnos));

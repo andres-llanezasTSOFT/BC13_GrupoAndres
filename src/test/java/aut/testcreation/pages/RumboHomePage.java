@@ -110,6 +110,8 @@ public class RumboHomePage extends SeleniumWrapper {
             navigateTo(BASE_URL_AUT);
         }
 
+
+
         public void preferencias (String origen, String destino/*,String diaIda,
                                             String mesIda,String diaVuelta,String mesVuelta*/){
 
