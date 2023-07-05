@@ -10,16 +10,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Properties;
 
 public class SeleniumTestBase {
 
     private DriverFactory driverFactory;
-    private WebDriver driver;
+    protected WebDriver driver;
     static Properties properties;
-    private RumboHomePage rumbopage;
-    private ElegirVuelo elegirVuelo;
+
+    private WebDriverWait wait;
+
 
   /*@BeforeEach
     public void preTests(){
@@ -39,11 +41,15 @@ public class SeleniumTestBase {
 
     @BeforeAll
     public static void LoadProperties() {
+
         properties = LoadProperties.loadProperties();
+
     }
 
     @BeforeEach
     void webDriverSetup(){
+        WebDriverManager.chromedriver().setup();
+        //driver = new ChromeDriver();
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
@@ -53,5 +59,8 @@ public class SeleniumTestBase {
     void close(){
         driver.quit();
     }*/
+
+
+
 
 }

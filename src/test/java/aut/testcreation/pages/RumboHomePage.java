@@ -1,18 +1,21 @@
 package aut.testcreation.pages;
 
+import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static framework.engine.utils.Constants.BASE_URL_AUT;
 
 public class RumboHomePage extends SeleniumWrapper {
 
+
+
     private WebDriver driver;
 
     public RumboHomePage(WebDriver driver) {
         super(driver);
+
     }
 
     By locatorIda = By.xpath("//div[@class='d-1nwmwhy']");
@@ -21,13 +24,19 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorIrAVuelo = By.xpath("//button[@aria-label='Buscar']");
 
-    By locatorLimpiaOrigen = By.xpath("//div[@class='d-12g9g33']//div[1]//div[1]//div[1]//button[1]//*[name()='svg']");
+    //By locatorLimpiaOrigen = By.xpath("//div[@class='d-12g9g33']//div[1]//div[1]//div[1]//button[1]//*[name()='svg']");
 
-    By locatorLimpiarDestino = By.xpath("//body//div//div[1]//div[1]//div[5]//div[1]//div[1]//div[1]//div[2]//div[1]//form[1]//div[1]//div[4]//fieldset[1]//div[3]//div[1]//div[1]//button[1]//*[name()='svg']//*[name()='path' and contains(@d,'M26 5C14.3')]");
+    //By locatorLimpiarDestino = By.xpath("//body//div//div[1]//div[1]//div[5]//div[1]//div[1]//div[1]//div[2]//div[1]//form[1]//div[1]//div[4]//fieldset[1]//div[3]//div[1]//div[1]//button[1]//*[name()='svg']//*[name()='path' and contains(@d,'M26 5C14.3')]");
 
     By locatorOrigen = By.xpath("//input[@aria-label='Origen']");/*//input[@id=':Riqid6lalallbla2mm:']");*/
 
     By locatorDestino = By.xpath("//input[@aria-label='Destino']");
+
+    By locatorFechaIda = By.xpath("//button[@aria-label='Fecha de ida']");
+
+    By locatorMesIda = By.xpath("//span[contains(text(), 'julio 2023')]");
+
+    By locatorMesSiguiente = By.xpath("//button[@aria-label='Next month']");
 
     By locatorSeleccionPasajero = By.xpath("//button[@class='d-1k0nsg5']");
 
@@ -60,17 +69,22 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorSeleccionClase));
     }*/
 
-    public void limpiaOrigen(){
-        click(esperarPorElemento(locatorLimpiaOrigen));
-    }
 
 
-    /*public void limpiaDestino(){
-        click(esperarPorElemento(locatorLimpiarDestino));
+    /*public void elegirOrigen(){
+        click(esperarPorElemento(locatorOrigen));
     }*/
 
-    public void elegirOrigen(){
-        click(esperarPorElemento(locatorOrigen));
+   /* public void mesIda(){
+        click(esperarPorElemento(locatorMesIda));
+    }*/
+
+    public void mesSiguiente(){
+        click(esperarPorElemento(locatorMesSiguiente));
+    }
+
+    public void fechaIda(){
+        click(esperarPorElemento(locatorFechaIda));
     }
 
     public void seleccionPasajero(){
@@ -96,43 +110,34 @@ public class RumboHomePage extends SeleniumWrapper {
         navigateTo(BASE_URL_AUT);
     }
 
-   public void preferencias(String origen,String destino/*,String diaIda,
-                                            String mesIda,String diaVuelta,String mesVuelta*/){
+   public void preferenciasIda(String origen,String destino/*,
+                                            String diaIda*/){
 
-        /*if(isDisplayed(locatorNoCookies)){
-            click(esperarPorElemento(locatorNoCookies));
-        }*/
         esperarXSegundos(200);
        agregarTexto(esperarPorElemento(locatorOrigen),origen);
         esperarXSegundos(300);
         agregarTexto(esperarPorElemento(locatorDestino),destino);
         esperarXSegundos(300);
 
-        /*agregarTexto(esperarPorElemento(locatorUsername),username);
-        esperarXSegundos(500);
 
-        agregarTexto(esperarPorElemento(locatorDia),dia);
-        esperarXSegundos(500);
+    }
 
-        seleccionarComboBoxPortextoVisible(locatorMes,mes);
-        esperarXSegundos(500);
+   public void elegirFechaIda(String mesIda){
 
-        agregarTexto(esperarPorElemento(locatorAnnio),annio);
-        esperarXSegundos(500);
+          seleccionarMes(locatorMesIda, mesIda);
 
-        click(buscarElementosWeb(locatorGeneros).get(genero));
-        esperarXSegundos(500);
+   }
 
-        click(buscarElementosWeb(locatorPreferencias).get(0));
-        esperarXSegundos(500);
 
-        click(buscarElementosWeb(locatorPreferencias).get(1));
-        esperarXSegundos(500);
+    public void preferenciasIdayVuelta(String origen,String destino/*,String mesIda,
+                                String diaIda,String mesVuelta,
+                                       String diaVuelta*/){
 
-        click(esperarPorElemento(btnRegistrate));
-        scrollingDownElement(esperarPorElemento(locatorCorreo));
-        esperarXSegundos(1500);*/
-
+        esperarXSegundos(200);
+        agregarTexto(esperarPorElemento(locatorOrigen),origen);
+        esperarXSegundos(300);
+        agregarTexto(esperarPorElemento(locatorDestino),destino);
+        esperarXSegundos(300);
     }
 
 }

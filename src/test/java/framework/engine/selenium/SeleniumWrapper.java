@@ -136,4 +136,21 @@ public class SeleniumWrapper {
         return driver.getTitle();
     }
 
+    public void seleccionarMes(By locator, String texto){
+        while(true){
+            String text = driver.findElement(locator).getAttribute("innerHTML");
+
+            if(text.equals(texto)){
+                break;
+            }
+            else {
+                driver.findElement(locator).click();
+            }
+        }
+    }
+
+    public void mesSiguiente(By locator){
+
+    }
+
 }
