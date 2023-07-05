@@ -16,7 +16,7 @@ public class Test_Tren extends SeleniumTestBase {
     public void inicializandoTest(){
         homePageTrenes = new HomePageTrenes(DriverFactory.getDriver());
         fechasDisponibles = new FechasDisponibles(homePageTrenes.getDriver());
-        homePageTrenes.navegarAlSitio();
+        homePageTrenes.cargarUrl("https://www.rumbo.es/");
         //homePageTrenes.esperarXSegundos(2000);
         homePageTrenes.validarCaptcha();
         //homePageTrenes.esperarXSegundos(2000);
@@ -27,17 +27,26 @@ public class Test_Tren extends SeleniumTestBase {
 
     @Test
     public void TC007_reserva_tren_idaYVuelta_ingresoFechas(){
-        homePageTrenes.irATrenes();
+
         fechasDisponibles.llenarCamposVacios("Madrid", "Barcelona", "10", "15");
 
     }
 
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
-        homePageTrenes.irATrenes();
-        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Madrid");
+
+        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Madrid", "20", "25");
         Assert.assertEquals("rumbo.es", homePageTrenes.getDriver().getTitle());
 
+    }
+
+    @Test
+    public void TC009_reserva_tren_ingresoFechasIguales(){
+
+        fechasDisponibles.fechasIguales("Barcelona", "Granada", "10", "20");
+        String resultado = "elija una fecha diferente";
+        String actual = "";
+        Assertions.assertEquals(resultado, actual);
     }
 
     @AfterEach

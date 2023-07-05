@@ -1,12 +1,9 @@
 package aut.testcreation.pages.Trenes;
 
-import framework.engine.selenium.SeleniumTestBase;
+
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-
-import java.security.Key;
 
 public class FechasDisponibles extends SeleniumWrapper {
 
@@ -25,7 +22,7 @@ public class FechasDisponibles extends SeleniumWrapper {
         super(driver);
     }
     public By fechasIndices(String numero){
-        return opcionFechas = By.xpath("//button[text(),"+numero+"]");
+        return opcionFechas = By.xpath("//button[contains(text(),"+numero+")]");
     }
     public By seleccionCantidadPasajero(){
         if(locatorCantidadPredefinida == By.xpath("//span[@class='d-32d0y']")){
@@ -48,7 +45,7 @@ public class FechasDisponibles extends SeleniumWrapper {
         click(esperarPorElemento(seleccionCantidadPasajero()));
         click(esperarPorElemento(locatorBtnBusqueda));
     }
-    public void llenarCamposVacios_clickFechas(String origen, String destino){
+    public void llenarCamposVacios_clickFechas(String origen, String destino, String ida, String vuelta){
 
         click(esperarPorElemento(locatorOrigen));
         esperarXSegundos(2000);
@@ -62,16 +59,28 @@ public class FechasDisponibles extends SeleniumWrapper {
        esperarXSegundos(2000);
         //click(esperarPorElemento(locatorBtnFechas));
        esperarXSegundos(2000);
-       click(esperarPorElemento(locatorBtnFechaIda));
+       click(esperarPorElemento(fechasIndices(ida)));
        esperarXSegundos(2000);
-       click(esperarPorElemento(locatorBtnFechaVuelta));
-       esperarXSegundos(2000);
+       click(esperarPorElemento(fechasIndices(vuelta)));
        click(esperarPorElemento(locatorBtnPasajero));
        esperarXSegundos(2000);
        click(esperarPorElemento(seleccionCantidadPasajero()));
        esperarXSegundos(2000);
        click(esperarPorElemento(locatorBtnBusqueda));
 
+    }
+
+    public void fechasIguales(String origen, String destino, String ida, String vuelta){
+
+        click(esperarPorElemento(locatorOrigen));
+        agregarTexto(esperarPorElemento(locatorOrigen),origen);
+        click(esperarPorElemento(locatorDestino));
+        agregarTexto(esperarPorElemento(locatorDestino),destino);
+        click(esperarPorElemento(locatorBtnFechas));
+        click(esperarPorElemento(fechasIndices(ida)));
+        click(esperarPorElemento(fechasIndices(vuelta)));
+        click(esperarPorElemento(locatorBtnPasajero));
+        click(esperarPorElemento(locatorBtnBusqueda));
     }
 
 
