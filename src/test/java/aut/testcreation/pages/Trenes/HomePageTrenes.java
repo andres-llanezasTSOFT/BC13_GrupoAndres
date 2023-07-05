@@ -9,17 +9,39 @@ import static framework.engine.utils.Constants.BASE_URL_AUT;
 public class HomePageTrenes extends SeleniumWrapper {
 
 
-
     public HomePageTrenes(WebDriver driver) {
         super(driver);
     }
 
     By locatorPaginaTrenes = By.xpath("//div[@class='d-1ytebqy e10w470p3']//a[@title='Trenes'][normalize-space()='Trenes']");
+    By locatorBtnNoCookies = By.xpath("//button[contains(@class,'iubenda-cs-reject-btn iubenda-cs-btn-primary')]");
+    By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
 
-    public By irATrenes(){
-      return locatorPaginaTrenes;
+    By btnCheckCaptcha = By.xpath("//input[@type=\"checkbox\"]");
+
+    public By irATrenes() {
+        return locatorPaginaTrenes;
     }
+
+    public void noCookies() {
+        if (isDisplayed(locatorBtnNoCookies)) {
+            click(esperarPorElemento(locatorBtnNoCookies));
+        }
+    }
+
+    public void validarCaptcha () {
+        esperarXSegundos(800);
+        if (isDisplayed(locatorCaptchaExiste)) {
+            esperarXSegundos(7000);
+            if(isEnabled(btnCheckCaptcha)){
+                click(esperarPorElemento(btnCheckCaptcha));
+            }
+        }
+
+    }
+
 }
+
 
 
 /*[16:41] Andrés Llanezas
