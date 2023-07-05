@@ -13,7 +13,7 @@ public class HomePageTrenes extends SeleniumWrapper {
         super(driver);
     }
 
-    By locatorPaginaTrenes = By.xpath("//div[@class='d-1ytebqy e10w470p3']//a[@title='Trenes'][normalize-space()='Trenes']");
+    By locatorPaginaTrenes = By.xpath("//a[@title='Trenes'][normalize-space()='Trenes']");
     By locatorBtnNoCookies = By.xpath("//button[contains(@class,'iubenda-cs-reject-btn iubenda-cs-btn-primary')]");
     By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
 

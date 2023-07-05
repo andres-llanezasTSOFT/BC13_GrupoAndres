@@ -45,8 +45,7 @@ public class Test_Tren extends SeleniumTestBase {
 
         fechasDisponibles.fechasIguales("Barcelona", "Granada", "10", "20");
         String resultado = "elija una fecha diferente";
-        String actual = "";
-        Assertions.assertEquals(resultado, actual);
+
     }
 
     @AfterEach

@@ -7,16 +7,13 @@ import org.openqa.selenium.WebDriver;
 
 public class FechasDisponibles extends SeleniumWrapper {
 
-    By locatorOrigen = By.xpath("//input[@id=':Rmhl6lalaqlql2mm:']");
-    By locatorDestino = By.xpath("//input[@id=':Rqhl6lalaqlql2mm:']");
-    By locatorBtnDestino = By.xpath("//li[@id=':Rqhl6lalaqlql2mm:-option-0']");
+    By locatorOrigen = By.xpath("//input[@placeholder='Origen']");
+    By locatorDestino = By.xpath("//input[@placeholder='Destino']");
     By opcionFechas;
-    By locatorCantidadPredefinida = By.xpath("//span[@class='d-32d0y']");
+    By locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
     By locatorBtnFechas = By.xpath("//label[normalize-space()='Fecha de ida']");
     By locatorBtnPasajero = By.xpath("//label[normalize-space()='Pasajero']");
-    By locatorBtnBusqueda = By.xpath("//div[@class='d-17aesaf']//*[name()='svg']");
-    By locatorBtnFechaIda = By.cssSelector(".d-iwstwh");
-    By locatorBtnFechaVuelta = By.cssSelector(".d-3j64rz");
+    By locatorBtnBusqueda = By.xpath("//button[contains(@aria-label,'Buscar')]");//"d-pgjwjt"
 
     public FechasDisponibles(WebDriver driver) {
         super(driver);
@@ -25,10 +22,10 @@ public class FechasDisponibles extends SeleniumWrapper {
         return opcionFechas = By.xpath("//button[contains(text(),"+numero+")]");
     }
     public By seleccionCantidadPasajero(){
-        if(locatorCantidadPredefinida == By.xpath("//span[@class='d-32d0y']")){
-            locatorCantidadPredefinida = By.xpath("//*[name()='path' and contains(@d,'M19 13H5V1')]");
+        if(locatorCantidadPredefinida == By.xpath("//span[contains(text(),'2 pasajero')]")){
+            locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
         }else{
-            locatorCantidadPredefinida = By.xpath("//*[name()='path' and contains(@d,'M19 13H13V')]");
+            locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
         }
         return locatorCantidadPredefinida;
     }
@@ -37,6 +34,7 @@ public class FechasDisponibles extends SeleniumWrapper {
     public void llenarCamposVacios(String origen, String destino, String indiceIda, String indieVuelta){
 
         agregarTexto(esperarPorElemento(locatorOrigen),origen);
+        click(esperarPorElemento(locatorDestino));
         agregarTexto(esperarPorElemento(locatorDestino),destino);
         click(esperarPorElemento(locatorBtnFechas));
         click(esperarPorElemento(fechasIndices(indiceIda)));
@@ -51,11 +49,7 @@ public class FechasDisponibles extends SeleniumWrapper {
         esperarXSegundos(2000);
        agregarTexto(esperarPorElemento(locatorOrigen),origen);
        esperarXSegundos(2000);
-       click(esperarPorElemento(locatorDestino));
-       esperarXSegundos(2000);
        agregarTexto(esperarPorElemento(locatorDestino),destino);
-       esperarXSegundos(2000);
-       click(esperarPorElemento(locatorBtnDestino));
        esperarXSegundos(2000);
         //click(esperarPorElemento(locatorBtnFechas));
        esperarXSegundos(2000);
