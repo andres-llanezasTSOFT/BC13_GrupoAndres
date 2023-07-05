@@ -4,10 +4,8 @@ import aut.testcreation.pages.Trenes.FechasDisponibles;
 import aut.testcreation.pages.Trenes.HomePageTrenes;
 import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.SeleniumTestBase;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.jupiter.api.*;
 
 public class Test_Tren extends SeleniumTestBase {
 
@@ -19,7 +17,10 @@ public class Test_Tren extends SeleniumTestBase {
         homePageTrenes = new HomePageTrenes(DriverFactory.getDriver());
         fechasDisponibles = new FechasDisponibles(homePageTrenes.getDriver());
         homePageTrenes.navegarAlSitio();
+        //homePageTrenes.esperarXSegundos(2000);
         homePageTrenes.validarCaptcha();
+        //homePageTrenes.esperarXSegundos(2000);
+        homePageTrenes.noCookies();
         homePageTrenes.irATrenes();
     }
 
@@ -34,8 +35,8 @@ public class Test_Tren extends SeleniumTestBase {
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
         homePageTrenes.irATrenes();
-        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Ciudad Real");
-
+        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Madrid");
+        Assert.assertEquals("rumbo.es", homePageTrenes.getDriver().getTitle());
 
     }
 

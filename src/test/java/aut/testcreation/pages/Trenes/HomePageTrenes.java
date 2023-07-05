@@ -19,9 +19,7 @@ public class HomePageTrenes extends SeleniumWrapper {
 
     By btnCheckCaptcha = By.xpath("//input[@type=\"checkbox\"]");
 
-    public By irATrenes() {
-        return locatorPaginaTrenes;
-    }
+    public void irATrenes() {click(esperarPorElemento(locatorPaginaTrenes));}
 
     public void noCookies() {
         if (isDisplayed(locatorBtnNoCookies)) {

@@ -12,13 +12,14 @@ public class FechasDisponibles extends SeleniumWrapper {
 
     By locatorOrigen = By.xpath("//input[@id=':Rmhl6lalaqlql2mm:']");
     By locatorDestino = By.xpath("//input[@id=':Rqhl6lalaqlql2mm:']");
+    By locatorBtnDestino = By.xpath("//li[@id=':Rqhl6lalaqlql2mm:-option-0']");
     By opcionFechas;
     By locatorCantidadPredefinida = By.xpath("//span[@class='d-32d0y']");
     By locatorBtnFechas = By.xpath("//label[normalize-space()='Fecha de ida']");
     By locatorBtnPasajero = By.xpath("//label[normalize-space()='Pasajero']");
     By locatorBtnBusqueda = By.xpath("//div[@class='d-17aesaf']//*[name()='svg']");
-    By locatorBtnFechaIda = By.xpath("div.e19fnmvl0.d-1xhhbhy.e161saim2:nth-child(3) div.hub-container.mobile.e161saim0.d-1pw96xe.eg3h3jz0 div.hub-row.e5okb9y0.d-e6i29g.e1sskiuc0 div.hub-col-md-12.hub-col-12.hub-col.d-13azrip.e1i8mjyc0 div.e19fnmvl0.content-wrapper.d-bmfhe3.e1151aq91 div.d-11zj2b6.e19fnmvl0:nth-child(5) div.d-1hmt6x div.d-1k8j4hr div.tab-wrapper.d-14510di div.d-10vaxqn div.d-1k2a5w2 div.d-1j5hrwi div.d-1yt6u46 div.d-1ola07z section.d-9sbhfh div.d-gjiwyg div.d-fhbsai div.d-epxt6h div:nth-child(2) div.d-1pjk4ge > button.d-17itmhv:nth-child(30)");
-    By locatorBtnFechaVuelta = By.xpath("div.e19fnmvl0.d-1xhhbhy.e161saim2:nth-child(3) div.hub-container.mobile.e161saim0.d-1pw96xe.eg3h3jz0 div.hub-row.e5okb9y0.d-e6i29g.e1sskiuc0 div.hub-col-md-12.hub-col-12.hub-col.d-13azrip.e1i8mjyc0 div.e19fnmvl0.content-wrapper.d-bmfhe3.e1151aq91 div.d-11zj2b6.e19fnmvl0:nth-child(5) div.d-1hmt6x div.d-1k8j4hr div.tab-wrapper.d-14510di div.d-10vaxqn div.d-1k2a5w2 div.d-1j5hrwi div.d-1yt6u46 div.d-1ola07z section.d-9sbhfh div.d-gjiwyg div.d-fhbsai div.d-epxt6h div:nth-child(2) div.d-1pjk4ge > button.d-3j64rz:nth-child(35)");
+    By locatorBtnFechaIda = By.cssSelector(".d-iwstwh");
+    By locatorBtnFechaVuelta = By.cssSelector(".d-3j64rz");
 
     public FechasDisponibles(WebDriver driver) {
         super(driver);
@@ -40,23 +41,37 @@ public class FechasDisponibles extends SeleniumWrapper {
 
         agregarTexto(esperarPorElemento(locatorOrigen),origen);
         agregarTexto(esperarPorElemento(locatorDestino),destino);
-        //click(esperarPorElemento(locatorBtnFechas));
+        click(esperarPorElemento(locatorBtnFechas));
         click(esperarPorElemento(fechasIndices(indiceIda)));
         click(esperarPorElemento(fechasIndices(indieVuelta)));
-        //click(esperarPorElemento(locatorBtnPasajero));
+        click(esperarPorElemento(locatorBtnPasajero));
         click(esperarPorElemento(seleccionCantidadPasajero()));
         click(esperarPorElemento(locatorBtnBusqueda));
     }
     public void llenarCamposVacios_clickFechas(String origen, String destino){
 
-        agregarTexto(esperarPorElemento(locatorOrigen),origen);
-        agregarTexto(esperarPorElemento(locatorDestino),destino);
-        click(esperarPorElemento(locatorBtnFechas));
-        click(esperarPorElemento(locatorBtnFechaIda));
-        click(esperarPorElemento(locatorBtnFechaVuelta));
-        click(esperarPorElemento(locatorBtnPasajero));
-        click(esperarPorElemento(seleccionCantidadPasajero()));
-        click(esperarPorElemento(locatorBtnBusqueda));
+        click(esperarPorElemento(locatorOrigen));
+        esperarXSegundos(2000);
+       agregarTexto(esperarPorElemento(locatorOrigen),origen);
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorDestino));
+       esperarXSegundos(2000);
+       agregarTexto(esperarPorElemento(locatorDestino),destino);
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorBtnDestino));
+       esperarXSegundos(2000);
+        //click(esperarPorElemento(locatorBtnFechas));
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorBtnFechaIda));
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorBtnFechaVuelta));
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorBtnPasajero));
+       esperarXSegundos(2000);
+       click(esperarPorElemento(seleccionCantidadPasajero()));
+       esperarXSegundos(2000);
+       click(esperarPorElemento(locatorBtnBusqueda));
+
     }
 
 
