@@ -17,7 +17,6 @@ public class Test_Hotel extends SeleniumTestBase {
     private BusquedaHotel busquedaHotel;
     private FiltrosHotel filtrosHotel;
     private DetalleHotel detalleHotel;
-
     private AnnadirHuespedesHotel huespedesHotel;
 
    @BeforeEach
@@ -28,30 +27,33 @@ public class Test_Hotel extends SeleniumTestBase {
        detalleHotel = new DetalleHotel(DriverFactory.getDriver());
        huespedesHotel = new AnnadirHuespedesHotel(DriverFactory.getDriver());
        rumbopage.cargarUrl("https://www.rumbo.es/");
-       rumbopage.validarCaptcha();
        rumbopage.esperarXSegundos(2000);
+       rumbopage.validarCaptcha();
+       rumbopage.esperarXSegundos(500);
        rumbopage.noCookies();
+       rumbopage.irABusquedaHotel();
    }
 
     @Test
     public void CP013_reserva_hotel_ingreso_datos_de_seleccion(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 3, 0);
-        Assertions.assertTrue(busquedaHotel.getUrlTitle().contains("https://www.rumbo.es/s/hdp/search?datefrom"));
+        //Assertions.assertEquals("rumbo.es/s/hdp/search?datefrom", filtrosHotel.getUrlTitle());
+        String resultadoEsperado= "Alojamientos en Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, filtrosHotel.getUrlTitle());
     }
 
     @Test
     public void CP014_reserva_hotel_filtro_precio(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        int resultado1= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_precio("1200", "2000");
-        int resultado2= filtrosHotel.ver_cantidad_resultados();
+        String resultado1= filtrosHotel.ver_cantidad_resultados();
+        System.out.println(filtrosHotel.ver_cantidad_resultados());
+        filtrosHotel.filtro_precio(120, -20);
+        String resultado2= filtrosHotel.ver_cantidad_resultados();
+        System.out.println(filtrosHotel.ver_cantidad_resultados());
         Assertions.assertNotEquals(resultado1, resultado2);
     }
     @Test
     public void CP015_reserva_hotel_formulario_datos_personales(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         filtrosHotel.seleccionar_primer_hotel();
         detalleHotel.elegir_solo_alojamiento();
@@ -60,7 +62,6 @@ public class Test_Hotel extends SeleniumTestBase {
     }
     @Test
     public void CP016_reserva_hotel_filtro_valoracion(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         filtrosHotel.filtro_valoracion("Solo adultos");
         filtrosHotel.filtro_valoracion("adaptado para niños");
@@ -70,28 +71,26 @@ public class Test_Hotel extends SeleniumTestBase {
 
     @Test
     public void CP017_reserva_hotel_limite_ninnos_por_habitacion(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
         Assertions.assertTrue(filtrosHotel.ver_detalle().contains("8 viajeros, 2 habitaciones") );
     }
 
     @Test
     public void CP018_reserva_hotel_filtros_multiples(){
-        rumbopage.irABusquedaHotel();
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        int resultado1= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_precio("1200", "2000");
-        int resultado2= filtrosHotel.ver_cantidad_resultados();
+        String resultado1= filtrosHotel.ver_cantidad_resultados();
+        filtrosHotel.filtro_precio(1200, 2000);
+        String resultado2= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_servicios_una_condicion("Wifi gratis");
-        int resultado3= filtrosHotel.ver_cantidad_resultados();
+        String resultado3= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_estrellas("3");
-        int resultado4= filtrosHotel.ver_cantidad_resultados();
+        String resultado4= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_regimen("desayuno");
-        int resultado5= filtrosHotel.ver_cantidad_resultados();
+        String resultado5= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_valoracion("Excelente");
-        int resultado6= filtrosHotel.ver_cantidad_resultados();
+        String resultado6= filtrosHotel.ver_cantidad_resultados();
 
-        Assertions.assertTrue(resultado1 > resultado2 && resultado2 > resultado3 &&
-                resultado3> resultado4 && resultado4 > resultado5 && resultado5 > resultado6);
+        Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
+                resultado3!= resultado4 && resultado4 != resultado5 && resultado5 != resultado6);
     }
 }

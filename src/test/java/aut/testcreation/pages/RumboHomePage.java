@@ -22,7 +22,8 @@ public class RumboHomePage extends SeleniumWrapper {
     By locatorIrAVuelo = By.xpath("//button[@aria-label='Buscar']");
 
 
-    By locatorIrAHotel = By.xpath("//button[@aria-label='Hoteles']");
+    //By locatorIrAHotel = By.xpath("//button[@aria-label='Hoteles']");
+    By locatorIrAHotel = By.xpath("//ul/li/div/a[@title='Hoteles']");
 
     By locatorOrigen = By.xpath("//input[@aria-label='Origen']");/*//input[@id=':Riqid6lalallbla2mm:']");*/
 
