@@ -69,9 +69,9 @@ public class Test_Hotel extends SeleniumTestBase {
     }
 
     @Test
-    public void CP017_reserva_hotel_limite_ninnos_por_habitacion(){
+    public void CP017_reserva_hotel_limite_ninnos_por_habitacion() {
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
-        Assertions.assertTrue(filtrosHotel.ver_detalle().contains("8 viajeros, 2 habitaciones") );
+        Assertions.assertTrue(filtrosHotel.verificar_detalle("8 viajeros, 2 habitaciones"));
     }
 
     @Test
@@ -91,5 +91,5 @@ public class Test_Hotel extends SeleniumTestBase {
 
         Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
                 resultado3!= resultado4 && resultado4 != resultado5 && resultado5 != resultado6);
-    }
+    };
 }

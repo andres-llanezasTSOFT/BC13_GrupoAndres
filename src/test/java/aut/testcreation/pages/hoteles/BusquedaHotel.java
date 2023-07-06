@@ -2,9 +2,7 @@ package aut.testcreation.pages.hoteles;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 
-import java.util.List;
 
 
 public class BusquedaHotel extends SeleniumWrapper {
@@ -18,7 +16,7 @@ public class BusquedaHotel extends SeleniumWrapper {
     By locatorPersonas = By.xpath("//label[contains(text(),\"Personas\")]");
     By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
     By btnAnnadirNinnos = By.xpath("//button[@aria-label='Aumentar el número de niños']");
-    By locatorEdadNinnos = By.cssSelector(".d-g93eyo");
+    By locatorEdadNinnos;
     By annadirHabitacion = By.xpath("//button[contains(text(), \"Añadir\")]");
     By locatorOpcionDia;
     By btnAceptar = By.xpath("//button[@type=\"submit\"]");
@@ -76,17 +74,16 @@ public class BusquedaHotel extends SeleniumWrapper {
             esperarXSegundos(500);
             click(esperarPorElemento(btnAnnadirNinnos));
             esperarXSegundos(1000);
-            List<WebElement> edades = getDriver().findElements(locatorEdadNinnos);
-            for(WebElement li: edades){
-                if(li.getText().equals(edadNinnos)){
-                   li.click();
-                }
-            }
+            click(crear_locator_ninnos(edadNinnos));
             esperarXSegundos(1000);
         }else{
             esperarXSegundos(500);
             click(esperarPorElemento(annadirHabitacion));
         }
+    }
+
+    public By crear_locator_ninnos(String edad){
+       return locatorEdadNinnos= By.xpath("//div/ul/li[contains(text(),'"+edad+"')]");
     }
 
 
