@@ -35,23 +35,25 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorTurista = By.xpath("//body/div[2]/div[3]/div[1]/section[1]/ul[1]/li[2]");
     By locatorNoCookies = By.xpath("//button[@class='iubenda-cs-reject-btn iubenda-cs-btn-primary']");
+
     //acciones del sitio
-    public void irASoloIda(){
+    public void irASoloIda() {
         click(esperarPorElemento(locatorIda));
     }
 
-    public void irIdayVuelta(){
+    public void irIdayVuelta() {
         click(esperarPorElemento(locatorIdayVuelta));
     }
-    public void irSeleccionPasajero(){
+
+    public void irSeleccionPasajero() {
         click(esperarPorElemento(locatorSeleccionPasajero));
     }
 
-    public void irMultidestino(){
+    public void irMultidestino() {
         click(esperarPorElemento(locatorMultidestino));
     }
 
-    public void irAVuelo(){
+    public void irAVuelo() {
         click(esperarPorElemento(locatorIrAVuelo));
     }
 
@@ -60,7 +62,7 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorSeleccionClase));
     }*/
 
-    public void limpiaOrigen(){
+    public void limpiaOrigen() {
         click(esperarPorElemento(locatorLimpiaOrigen));
     }
 
@@ -69,11 +71,11 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorLimpiarDestino));
     }*/
 
-    public void elegirOrigen(){
+    public void elegirOrigen() {
         click(esperarPorElemento(locatorOrigen));
     }
 
-    public void seleccionPasajero(){
+    public void seleccionPasajero() {
         click(esperarPorElemento(locatorSeleccionPasajero));
     }
 
@@ -84,28 +86,28 @@ public class RumboHomePage extends SeleniumWrapper {
     }*/
 
 
-    public void irClaseTurista(){
+    public void irClaseTurista() {
         click(esperarPorElemento(locatorTurista));
     }
 
-    public void noCookies(){
+    public void noCookies() {
         click(esperarPorElemento(locatorNoCookies));
     }
 
-    public void navegarAlSitio(){
+    public void navegarAlSitio() {
         navigateTo(BASE_URL_AUT);
     }
 
-   public void preferencias(String origen,String destino/*,String diaIda,
-                                            String mesIda,String diaVuelta,String mesVuelta*/){
+    public void preferenciasIdayVuelta(String origen, String destino/*,String diaIda,
+                                            String mesIda,String diaVuelta,String mesVuelta*/) {
 
         /*if(isDisplayed(locatorNoCookies)){
             click(esperarPorElemento(locatorNoCookies));
         }*/
         esperarXSegundos(200);
-       agregarTexto(esperarPorElemento(locatorOrigen),origen);
+        agregarTexto(esperarPorElemento(locatorOrigen), origen);
         esperarXSegundos(300);
-        agregarTexto(esperarPorElemento(locatorDestino),destino);
+        agregarTexto(esperarPorElemento(locatorDestino), destino);
         esperarXSegundos(300);
 
         /*agregarTexto(esperarPorElemento(locatorUsername),username);
@@ -135,4 +137,18 @@ public class RumboHomePage extends SeleniumWrapper {
 
     }
 
+    public void preferenciasIda(String origen, String destino/*,String diaIda,
+                                            String mesIda,String diaVuelta,String mesVuelta*/) {
+
+        /*if(isDisplayed(locatorNoCookies)){
+            click(esperarPorElemento(locatorNoCookies));
+        }*/
+        esperarXSegundos(200);
+        agregarTexto(esperarPorElemento(locatorOrigen), origen);
+        esperarXSegundos(300);
+        agregarTexto(esperarPorElemento(locatorDestino), destino);
+        esperarXSegundos(300);
+
+
+    }
 }

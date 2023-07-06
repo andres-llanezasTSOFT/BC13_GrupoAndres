@@ -50,6 +50,7 @@ dependencies {
 
     //
     testImplementation "com.typesafe:config:${typeSafeVersion}"
+    testImplementation 'org.testng:testng:7.1.0'
 
     //Lombok
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
