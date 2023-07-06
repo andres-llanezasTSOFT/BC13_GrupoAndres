@@ -55,16 +55,15 @@ public class Test_Hotel extends SeleniumTestBase {
     @Test
     public void CP015_reserva_hotel_formulario_datos_personales(){
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        filtrosHotel.seleccionar_primer_hotel();
+        filtrosHotel.seleccionar_primer_resultado();
         detalleHotel.elegir_solo_alojamiento();
         huespedesHotel.llenar_datos_personales("Carlos", "Dilorenzi", "carlos3@gmail.com", "España", "56748922");
         Assertions.assertEquals(4, huespedesHotel.cantidad_inputs_validos());
     }
     @Test
-    public void CP016_reserva_hotel_filtro_valoracion(){
+    public void CP016_reserva_hotel_filtro_servicios(){
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        filtrosHotel.filtro_valoracion("Solo adultos");
-        filtrosHotel.filtro_valoracion("adaptado para niños");
+        filtrosHotel.filtro_dos_servicios("Solo adultos", "niños");
         String ResultadoEsperado = "No se encuentran resultados";
         Assertions.assertEquals(filtrosHotel.mostrar_mensaje_sin_resultados(),ResultadoEsperado);
     }
@@ -79,13 +78,13 @@ public class Test_Hotel extends SeleniumTestBase {
     public void CP018_reserva_hotel_filtros_multiples(){
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
         String resultado1= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_precio(1200, 2000);
+        filtrosHotel.filtro_precio(120, -20);
         String resultado2= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_servicios_una_condicion("Wifi gratis");
+        filtrosHotel.filtro_servicios("Wifi gratis");
         String resultado3= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_estrellas("3");
+        filtrosHotel.filtro_estrellas(3);
         String resultado4= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_regimen("desayuno");
+        filtrosHotel.filtro_regimen("Desayuno");
         String resultado5= filtrosHotel.ver_cantidad_resultados();
         filtrosHotel.filtro_valoracion("Excelente");
         String resultado6= filtrosHotel.ver_cantidad_resultados();

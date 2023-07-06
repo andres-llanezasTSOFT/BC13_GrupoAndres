@@ -109,6 +109,11 @@ public class SeleniumWrapper {
         }
     }
 
+    public void seleccionar_primer_resultado(By locator){
+        List<WebElement> resultados= buscarElementosWeb(locator);
+        resultados.get(0).click();
+    }
+
    public void seleccionarComboBoxPortextoVisible(By locator,String textoVisible){
         WebElement ddlMes = driver.findElement(locator);
         Select selectorMes = new Select(ddlMes);
@@ -138,17 +143,6 @@ public class SeleniumWrapper {
 
     public String getUrlTitle(){
         return driver.getTitle();
-    }
-
-    public int extraer_int_de_String(By locator) {
-        String resultado = findElement(locator).getText();
-        StringBuilder sb = new StringBuilder();
-        for (char c : resultado.toCharArray()) {
-            if (Character.isDigit(c)) {
-                sb.append(c);
-            }
-        }
-        return Integer.parseInt(sb.toString());
     }
 
     public void drag_and_drop(By locator, int value){
