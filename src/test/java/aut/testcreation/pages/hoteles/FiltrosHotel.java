@@ -38,7 +38,7 @@ public class FiltrosHotel extends SeleniumWrapper {
     By locatorMensajeSinResultados = By.xpath("//div[contains(text(),'No se encuentran resultados')]");
 
 
-    By locatorDetalle = By.xpath("//div[@role=\"button\"]//descendant::div[@xpath=\"3\"]");
+    By locatorDetalle;
 
 //VER_____________________________________________________________________________________________________________
 
@@ -92,6 +92,10 @@ public class FiltrosHotel extends SeleniumWrapper {
         return locatorServicio = By.xpath("//div[contains(text(),'" + item +"')]");
     }
 
+    public By crear_locator_detalle(String resultado){
+        return By.xpath("//span[contains(text(),'" + resultado +"')]");
+    }
+
     public By crear_locator_valoracion(String item){
         return locatorValoracion = By.xpath("//div[contains(text(),'" + item +"')]");
     }
@@ -104,7 +108,9 @@ public class FiltrosHotel extends SeleniumWrapper {
         super.seleccionar_primer_resultado(btnPrecioHotel);
     }
 
-    public String ver_detalle(){return findElement(locatorDetalle).getText();}
+    public boolean verificar_detalle(String verificar){
+        return findElement(crear_locator_detalle(verificar)).getText().equals(verificar);
+    }
 
     public String ver_cantidad_resultados() {
         String value= getText(locatorCantidadResultadosBusqueda);
