@@ -1,7 +1,7 @@
 package aut.testcreation.testcases;
 
 
-import aut.testcreation.pages.*;
+import aut.testcreation.pages.Vuelos.RumboHomePage;
 import aut.testcreation.pages.hoteles.AnnadirHuespedesHotel;
 import aut.testcreation.pages.hoteles.BusquedaHotel;
 import aut.testcreation.pages.hoteles.DetalleHotel;

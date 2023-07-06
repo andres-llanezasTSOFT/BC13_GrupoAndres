@@ -1,4 +1,4 @@
-package aut.testcreation.pages;
+package aut.testcreation.pages.Vuelos;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
@@ -16,6 +16,7 @@ public class RumboHomePage extends SeleniumWrapper {
     }
 
     By locatorIda = By.xpath("//div[@class='d-1nwmwhy']");
+
     By locatorIdayVuelta = By.xpath("//div[@class='d-4mhg59']");
     By locatorMultidestino = By.xpath("//a[contains(text(),'Multidestino')]");
 
@@ -25,7 +26,7 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorLimpiarDestino = By.xpath("//body//div//div[1]//div[1]//div[5]//div[1]//div[1]//div[1]//div[2]//div[1]//form[1]//div[1]//div[4]//fieldset[1]//div[3]//div[1]//div[1]//button[1]//*[name()='svg']//*[name()='path' and contains(@d,'M26 5C14.3')]");
 
-    By locatorOrigen = By.xpath("//input[@aria-label='Origen']");/*//input[@id=':Riqid6lalallbla2mm:']");*/
+    By locatorOrigen = By.xpath("//input[@aria-label='Origen']");
 
     By locatorDestino = By.xpath("//input[@aria-label='Destino']");
 
@@ -36,11 +37,12 @@ public class RumboHomePage extends SeleniumWrapper {
     By locatorTurista = By.xpath("//body/div[2]/div[3]/div[1]/section[1]/ul[1]/li[2]");
     By locatorNoCookies = By.xpath("//button[@class='iubenda-cs-reject-btn iubenda-cs-btn-primary']");
 
+
     //acciones del sitio
+
     public void irASoloIda() {
         click(esperarPorElemento(locatorIda));
     }
-
     public void irIdayVuelta() {
         click(esperarPorElemento(locatorIdayVuelta));
     }
@@ -57,6 +59,10 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorIrAVuelo));
     }
 
+
+    public void noCookies() {
+        click(esperarPorElemento(locatorNoCookies));
+    }
     /*public void irSeleccionClase(){
 
         click(esperarPorElemento(locatorSeleccionClase));
@@ -90,9 +96,9 @@ public class RumboHomePage extends SeleniumWrapper {
         click(esperarPorElemento(locatorTurista));
     }
 
-    public void noCookies() {
+    /*public void noCookies() {
         click(esperarPorElemento(locatorNoCookies));
-    }
+    }*/
 
     public void navegarAlSitio() {
         navigateTo(BASE_URL_AUT);
@@ -137,12 +143,10 @@ public class RumboHomePage extends SeleniumWrapper {
 
     }
 
-    public void preferenciasIda(String origen, String destino/*,String diaIda,
-                                            String mesIda,String diaVuelta,String mesVuelta*/) {
 
-        /*if(isDisplayed(locatorNoCookies)){
-            click(esperarPorElemento(locatorNoCookies));
-        }*/
+
+    public void preferenciasIda(String origen, String destino) {
+
         esperarXSegundos(200);
         agregarTexto(esperarPorElemento(locatorOrigen), origen);
         esperarXSegundos(300);
