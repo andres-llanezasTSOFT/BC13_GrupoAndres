@@ -4,6 +4,7 @@ import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+
 public class FiltrosHotel extends SeleniumWrapper {
     public FiltrosHotel(WebDriver driver) {
         super(driver);
@@ -41,10 +42,14 @@ public class FiltrosHotel extends SeleniumWrapper {
 
 
 
-    public void filtro_precio(String valor1, String valor2){
+    public void filtro_precio(int valor1, int valor2){
         click(esperarPorElemento(locatorFiltroPrecio));
-        //mover btnRangoMinimo y btnRangoMaximo hasta que queden iguales a los valores pasados por string
+        esperarXSegundos(2000);
+        drag_and_drop(btnRangoMínimo, valor1);
+        esperarXSegundos(2000);
+        drag_and_drop(btnRangoMaximo, valor2);
         click(btnAplicar);
+        esperarXSegundos(2000);
     }
     public void filtro_servicios_una_condicion(String item){
         click(esperarPorElemento(locatorFiltroServicio));
@@ -80,8 +85,9 @@ public class FiltrosHotel extends SeleniumWrapper {
 
     public String ver_detalle(){return findElement(locatorDetalle).getText();}
 
-    public int ver_cantidad_resultados() {
-        int value = extraer_int_de_String(locatorCantidadResultadosBusqueda);
+    public String ver_cantidad_resultados() {
+        String value= getText(locatorCantidadResultadosBusqueda);
+        //int value = extraer_int_de_String(locatorCantidadResultadosBusqueda);
         return value;
     }
 

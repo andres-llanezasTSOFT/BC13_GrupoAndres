@@ -1,6 +1,7 @@
 package framework.engine.selenium;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -150,6 +151,12 @@ public class SeleniumWrapper {
         return Integer.parseInt(sb.toString());
     }
 
+    public void drag_and_drop(By locator, int value){
+        int y=0;
+        WebElement slider = this.getDriver().findElement(locator);
+        Actions action = new Actions(this.getDriver());
+        action.dragAndDropBy(slider, value, y).perform();
+    }
 
 
 
