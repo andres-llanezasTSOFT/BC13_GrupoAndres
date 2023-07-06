@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 public class FechasDisponibles extends SeleniumWrapper {
 
     By locatorOrigen = By.xpath("//input[@placeholder='Origen']");
+    By locatorValueOrigen = By.xpath("//input[@aria-label='Origen' and @value='Almería'] ");
+    By locatorValueDestino = By.xpath("//input[@aria-label='Destino' and @value='Madrid'] ");
     By locatorDestino = By.xpath("//input[@placeholder='Destino']");
     By opcionFechas;
     By locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
@@ -49,9 +51,10 @@ public class FechasDisponibles extends SeleniumWrapper {
         esperarXSegundos(2000);
        agregarTexto(esperarPorElemento(locatorOrigen),origen);
        esperarXSegundos(2000);
+        click(esperarPorElemento(locatorDestino));
        agregarTexto(esperarPorElemento(locatorDestino),destino);
        esperarXSegundos(2000);
-        //click(esperarPorElemento(locatorBtnFechas));
+        click(esperarPorElemento(locatorBtnFechas));
        esperarXSegundos(2000);
        click(esperarPorElemento(fechasIndices(ida)));
        esperarXSegundos(2000);

@@ -14,7 +14,7 @@ public class HomePageTrenes extends SeleniumWrapper {
     }
 
     By locatorPaginaTrenes = By.xpath("//a[@title='Trenes'][normalize-space()='Trenes']");
-    By locatorBtnNoCookies = By.xpath("//button[contains(@class,'iubenda-cs-reject-btn iubenda-cs-btn-primary')]");
+    By locatorBtnNoCookies = By.xpath("//button[contains(text(),'Rechazar todo')]");
     By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
 
     By btnCheckCaptcha = By.xpath("//input[@type=\"checkbox\"]");
