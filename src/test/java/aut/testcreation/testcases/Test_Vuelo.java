@@ -42,13 +42,7 @@ public class Test_Vuelo extends SeleniumTestBase {
 
     }
 
-        /*Assertions.assertEquals(FixEncoding.fix("Descubre más sobre nuestros criterios de " +
-                "clasificación"), driver.findElement(By.xpath("//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")).getText());*/
 
-        /*String mensajeEsperado = "Descubre más sobre nuestros criterios de clasificación";
-        WebElement resultadoActual = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")));
-        String mensajeActual = resultadoActual.getText();
-        Assert.assertEquals(mensajeEsperado,mensajeActual);*/
 
 
     @Test
@@ -67,9 +61,81 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.esperarXSegundos(7000);
         String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
         Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
-        //Assertions.assertEquals(FixEncoding.fix("Descubre más sobre nuestros criterios de clasificación"),
-                //driver.findElement(By.xpath("//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")).getText());
+
+    }
+    @Test
+    public void TC003_reserva_vuelo_multidestino_campos_vacio_en_formulario_pasajero_principal(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        //rumbopage.fechaIda();
+        //rumbopage.elegirFechaIda("septiembre 2023");
+        // rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+        rumbopage.esperarXSegundos(7000);
+        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+
     }
 
+    @Test
+    public void TC004_reserva_vuelo_ida_y_vuelta_campo_Nombre_de_usuario_vacio(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        //rumbopage.fechaIda();
+        //rumbopage.elegirFechaIda("septiembre 2023");
+        // rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+        rumbopage.esperarXSegundos(7000);
+        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
 
+    }
+
+    @Test
+    public void TC005_reserva_vuelo_ida_y_vuelta_filtro_clase_y_metodo_de_pago_Fecha_de_nacimiento_no_válida(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        //rumbopage.fechaIda();
+        //rumbopage.elegirFechaIda("septiembre 2023");
+        // rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+        rumbopage.esperarXSegundos(7000);
+        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+
+    }
+
+    @Test
+    public void TC006_reserva_vuelo_ida_filtro_clase_y_metodo_de_pago_campo_telefono_vacío(){
+        rumbopage = new RumboHomePage(DriverFactory.getDriver());
+        elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        rumbopage.navegarAlSitio();
+        rumbopage.noCookies();
+        rumbopage.irASoloIda();
+        //rumbopage.fechaIda();
+        //rumbopage.elegirFechaIda("septiembre 2023");
+        // rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.esperarXSegundos(300);
+        rumbopage.irAVuelo();
+        rumbopage.esperarXSegundos(7000);
+        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+
+    }
 }
