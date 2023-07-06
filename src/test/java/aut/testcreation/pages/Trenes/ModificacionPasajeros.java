@@ -29,20 +29,20 @@ public class ModificacionPasajeros extends SeleniumWrapper {
         return locatorCantidadPasajeros;
     }
 
-    public void modificarPasajeros(String ida, String vuelta, String pasajero, String pasajero2){
+    public void modificarPasajeros(String origen, String destino, String ida, String vuelta){
 
         click(esperarPorElemento(locatorOrigen));
-        click(esperarPorElemento(locatorOrigen));
+        agregarTexto(esperarPorElemento(locatorOrigen),origen);
         click(esperarPorElemento(locatorDestino));
-        click(esperarPorElemento(locatorDestino));
+        agregarTexto(esperarPorElemento(locatorDestino),destino);
         click(esperarPorElemento(locatorBtnFechas));
         click(esperarPorElemento(fechasIndices(ida)));
         click(esperarPorElemento(fechasIndices(vuelta)));
         click(esperarPorElemento(locatorBtnPasajero));
-        click(esperarPorElemento(cantidadPasajero(pasajero)));
+        click(esperarPorElemento(seleccionCantidadPasajero()));
         click(esperarPorElemento(locatorBtnBusqueda));
         click(esperarPorElemento(locatorBtnIconModificar));
-        click(esperarPorElemento(cantidadPasajero(pasajero2)));
+        click(esperarPorElemento(seleccionCantidadPasajero()));
         click(esperarPorElemento(locatorPagina2));
 
 
@@ -56,7 +56,7 @@ public class ModificacionPasajeros extends SeleniumWrapper {
         if(locatorCantidadPredefinida == By.xpath("//span[contains(text(),'2 pasajero')]")){
             locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
         }else{
-            locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
+            locatorCantidadPredefinida = By.xpath("//span[contains(text(),'2 pasajero')]");
         }
         return locatorCantidadPredefinida;
     }
