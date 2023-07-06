@@ -1,4 +1,4 @@
-package aut.testcreation.pages;
+package aut.testcreation.pages.hoteles;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
@@ -22,17 +22,17 @@ public class FiltrosHotel extends SeleniumWrapper {
 
 
     By locatorFiltroEstrellas = By.cssSelector("#Pill-StarsContainer");
-    By locatorCantEstrellas = By.xpath("");
+    By locatorCantEstrellas = By.cssSelector("#exp_elem_hotel_stars_3");
 
 
     By locatorFiltroRegimen = By.xpath("#Pill-MealContainer");
-    By locatorRegimen = By.xpath("");
+    By locatorRegimen = By.xpath("//ul/li[3]//following::div[contains(text(),\"Desayuno\")]");
 
     By btnPrecioHotel = By.xpath("//iframe[@id='google_ads_top_frame']");
 
-    By locatorCantidadResultadosBusqueda = By.xpath("");
+    By locatorCantidadResultadosBusqueda = By.xpath("//div[@class='sc-hAtEyd iuHLWW']");
 
-    By locatorMensajeSinResultados = By.xpath("");
+    By locatorMensajeSinResultados = By.xpath("//div[contains(text(),'No se encuentran resultados')]");
 
 
     By locatorDetalle = By.xpath("//div[@role=\"button\"]//descendant::div[@xpath=\"3\"]");

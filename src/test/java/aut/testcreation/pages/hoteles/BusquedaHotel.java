@@ -1,7 +1,10 @@
-package aut.testcreation.pages;
+package aut.testcreation.pages.hoteles;
 
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class BusquedaHotel extends SeleniumWrapper {
 
@@ -13,8 +16,8 @@ public class BusquedaHotel extends SeleniumWrapper {
     By locatorFecha = By.xpath("//button[contains(@aria-label, \"Fecha de entrada\")]");
     By locatorPersonas = By.xpath("//div/label[contains(text(),\"Personas\")]");
     By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
-    By btnAnnadirNinnos = By.xpath("//button[contains(@aria-label, \"Aumentar el número de niños\")] //span[@xpath=\"2\"]");
-    By locatorEdadNinnos = By.xpath("//ul//li[contains(.,\"Edad al viajar\")]");
+    By btnAnnadirNinnos = By.xpath("//button[@aria-label='Aumentar el número de niños']");
+    By locatorEdadNinnos = By.cssSelector(".d-g93eyo");
     By annadirHabitacion = By.xpath("//button[contains(text(), \"Añadir\")]");
     By locatorOpcionDia;
     By btnAceptar = By.xpath("//button[@type=\"submit\"]");
@@ -43,7 +46,8 @@ public class BusquedaHotel extends SeleniumWrapper {
             }
             click(esperarPorElemento(locatorPersonas));
         }
-        esperarXSegundos(8000);
+        esperarXSegundos(500);
+        this.getDriver().switchTo();
        buscar();
     }
 
@@ -54,22 +58,27 @@ public class BusquedaHotel extends SeleniumWrapper {
                 click(esperarPorElemento(btnAumentarNroAdultos));
                 esperarXSegundos(500);
             }
-            click(esperarPorElemento(locatorPersonas));
-
         }
-        else{click(esperarPorElemento(locatorPersonas));}
     }
 
     public void buscar(){
+        getDriver().switchTo().frame("iframe[height='0']"); //switching the frame by ID
+        getDriver().findElement(btnAceptar).click();
         click(esperarPorElemento(btnAceptar));
     }
 
     public void annadirNinnosHabitacion(String edadNinnos) {
-        click(esperarPorElemento(btnAnnadirNinnos));
         esperarXSegundos(500);
-        if (isDisplayed(locatorEdadNinnos)) {
-            seleccionarComboBoxPortextoVisible(locatorEdadNinnos, edadNinnos);
-            esperarXSegundos(500);
+        if (isEnabled(btnAnnadirNinnos)) {
+            click(esperarPorElemento(btnAnnadirNinnos));
+            esperarXSegundos(1000);
+            List<WebElement> edades = getDriver().findElements(locatorEdadNinnos);
+            for(WebElement li: edades){
+                if(li.getText().equals(edadNinnos)){
+                   li.click();
+                }
+            }
+            esperarXSegundos(1000);
         }else{
             esperarXSegundos(500);
             click(esperarPorElemento(annadirHabitacion));
