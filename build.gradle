@@ -21,7 +21,7 @@ repositories {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    //options.encoding = 'UTF-8'
 }
 
 tasks.withType(Test) {
@@ -50,6 +50,7 @@ dependencies {
 
     //
     testImplementation "com.typesafe:config:${typeSafeVersion}"
+    testImplementation 'org.testng:testng:7.1.0'
 
     //Lombok
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
