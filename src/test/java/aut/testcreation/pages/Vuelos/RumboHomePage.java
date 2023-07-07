@@ -17,6 +17,9 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorIda = By.xpath("//div[@class='d-1nwmwhy']");
 
+    By locatorPersonas = By.xpath("//label[contains(text(),\"Pasajero\")]");
+
+
     By locatorIdayVuelta = By.xpath("//div[@class='d-4mhg59']");
     By locatorMultidestino = By.xpath("//a[contains(text(),'Multidestino')]");
 
@@ -36,10 +39,14 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorOpcionDia;
 
-    By locatorFecha = By.xpath("//button[contains(@aria-label, \"Fecha de entrada\")]");
+    By locatorFecha = By.xpath("//button[contains(@aria-label, \"Fecha de ida\")]");
 
 
-    By locatorMetodoPago = By.xpath("//span[contains(text(),'American Express')]");
+    By locatorMetodoPago = By.xpath("//div[@class='d-17oxpj9']//div//div[@class='d-ad9l2y']//*[name()='svg']");
+
+    By locatorDiners = By.xpath("//li[contains(text(),'Diners')]");
+
+    By locatorAmerican = By.xpath("//li[contains(text(),'American Express')]");
 
     By locatorDiaIda = By.xpath("//button[contains(text(),'19')]");
 
@@ -47,7 +54,7 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
 
-    By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
+    By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']");
 
     By locatorNoCookies = By.xpath("//button[@class='iubenda-cs-reject-btn iubenda-cs-btn-primary']");
 
@@ -99,6 +106,8 @@ public class RumboHomePage extends SeleniumWrapper {
     }
 
 
+
+
     public void noCookies() {
         click(esperarPorElemento(locatorNoCookies));
     }
@@ -114,8 +123,8 @@ public class RumboHomePage extends SeleniumWrapper {
     }
 
     private void annadirAdultos(int cantAdultos) {
-        if(cantAdultos>2){
-            for(int i=2;i<cantAdultos;i++) {
+        if(cantAdultos>=2){
+            for(int i=2;i<=cantAdultos ;i++) {
                 click(esperarPorElemento(btnAumentarNroAdultos));
                 esperarXSegundos(500);
             }
@@ -140,6 +149,10 @@ public class RumboHomePage extends SeleniumWrapper {
         navigateTo(BASE_URL_AUT);
     }
 
+    public void ir_a_personas(){
+        click(esperarPorElemento(locatorPersonas));
+    }
+
     public void preferenciasIdayVuelta(String origen, String destino,String diaPartida,
                                        String diaVuelta, int cantAdultos ) {
 
@@ -154,61 +167,64 @@ public class RumboHomePage extends SeleniumWrapper {
         click(crear_locator_dia(diaVuelta));
         esperarXSegundos(500);
         annadirAdultos(cantAdultos);
-
+        ir_a_personas();
+        esperarXSegundos(500);
     }
 
-    public void preferenciasIdayVuelta2(String origen, String destino/*,String diaIda,
-                                            String mesIda,String diaVuelta,String mesVuelta*/) {
+    public void preferenciasIdayVuelta2(String origen, String destino, String diaPartida,
+                                        String diaVuelta, int cantAdultos) {
 
         esperarXSegundos(200);
         agregarTexto(esperarPorElemento(locatorOrigen), origen);
-        esperarXSegundos(300);
+        esperarXSegundos(500);
         agregarTexto(esperarPorElemento(locatorDestino), destino);
-        esperarXSegundos(300);
+        esperarXSegundos(500);
         click(esperarPorElemento(locatorSeleccionClase));
-        esperarXSegundos(300);
+        esperarXSegundos(500);
         click(esperarPorElemento(locatorBusiness));
-        esperarXSegundos(300);
+        esperarXSegundos(500);
         click(esperarPorElemento(locatorMetodoPago));
-        esperarXSegundos(300);
-
-        /*agregarTexto(esperarPorElemento(locatorUsername),username);
+        click(esperarPorElemento(locatorMetodoPago));
+        esperarXSegundos(1700);
+        click(esperarPorElemento(locatorDiners));
+        esperarXSegundos(700);
+        click(esperarPorElemento(locatorFecha));
+        click(crear_locator_dia(diaPartida));
+        click(crear_locator_dia(diaVuelta));
+        esperarXSegundos(700);
+        annadirAdultos(cantAdultos);
+        esperarXSegundos(700);
+        ir_a_personas();
         esperarXSegundos(500);
 
-        agregarTexto(esperarPorElemento(locatorDia),dia);
-        esperarXSegundos(500);
-
-        seleccionarComboBoxPortextoVisible(locatorMes,mes);
-        esperarXSegundos(500);
-
-        agregarTexto(esperarPorElemento(locatorAnnio),annio);
-        esperarXSegundos(500);
-
-        click(buscarElementosWeb(locatorGeneros).get(genero));
-        esperarXSegundos(500);
-
-        click(buscarElementosWeb(locatorPreferencias).get(0));
-        esperarXSegundos(500);
-
-        click(buscarElementosWeb(locatorPreferencias).get(1));
-        esperarXSegundos(500);
-
-        click(esperarPorElemento(btnRegistrate));
-        scrollingDownElement(esperarPorElemento(locatorCorreo));
-        esperarXSegundos(1500);*/
 
     }
 
 
 
-    public void preferenciasIda(String origen, String destino) {
+    public void preferenciasIda(String origen, String destino,String diaPartida,
+                                int cantAdultos) {
 
         esperarXSegundos(200);
         agregarTexto(esperarPorElemento(locatorOrigen), origen);
-        esperarXSegundos(300);
+        esperarXSegundos(500);
         agregarTexto(esperarPorElemento(locatorDestino), destino);
-        esperarXSegundos(300);
-
+        esperarXSegundos(500);
+        click(esperarPorElemento(locatorSeleccionClase));
+        esperarXSegundos(500);
+        click(esperarPorElemento(locatorBusiness));
+        esperarXSegundos(500);
+        click(esperarPorElemento(locatorMetodoPago));
+        click(esperarPorElemento(locatorMetodoPago));
+        esperarXSegundos(1700);
+        click(esperarPorElemento(locatorAmerican));
+        esperarXSegundos(500);
+        click(esperarPorElemento(locatorFecha));
+        click(crear_locator_dia(diaPartida));
+        esperarXSegundos(2000);
+        annadirAdultos(cantAdultos);
+        ir_a_personas();
+        esperarXSegundos(500);
 
     }
 }

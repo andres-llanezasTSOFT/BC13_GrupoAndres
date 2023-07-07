@@ -54,16 +54,16 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irASoloIda();
-        ////rumbopage.fechaIda();
-        //rumbopage.elegirFechaIda("septiembre 2023");
         rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
-        rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)", "12", 3);
+        rumbopage.esperarXSegundos(2300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
-        String resultadoEsperado="Descubre más sobre nuestros criterios de clasificación";
+        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+        /*String resultadoEsperado="Descubre más sobre nuestros criterios de clasificación";
         Assertions.assertEquals(FixEncoding.fix(resultadoEsperado), rumbopage.findElement(By.xpath(
-                "//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")).getText());
+                "//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")).getText());*/
 
     }
     @Test
@@ -76,7 +76,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         //rumbopage.fechaIda();
         //rumbopage.elegirFechaIda("septiembre 2023");
         // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        //rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)","14", "17",3);
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
@@ -94,11 +94,8 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irIdayVuelta();
-        //rumbopage.fechaIda();
-        //rumbopage.elegirFechaIda("septiembre 2023");
-        // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)", "13", "29", 2);
-        rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)", "13", "29", 1);
+        rumbopage.esperarXSegundos(700);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(8000);
         elegirVuelo.masBarato();
@@ -120,37 +117,49 @@ public class Test_Vuelo extends SeleniumTestBase {
     public void TC005_reserva_vuelo_ida_y_vuelta_filtro_clase_y_metodo_de_pago_Fecha_de_nacimiento_no_valida(){
         rumbopage = new RumboHomePage(DriverFactory.getDriver());
         elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        elegirServicio = new ElegirServicio(DriverFactory.getDriver());
+        registroUsuarios = new RegistroDatosUsuarios(DriverFactory.getDriver());
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irIdayVuelta();
-        //rumbopage.fechaIda();
-        //rumbopage.elegirFechaIda("septiembre 2023");
-        // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIdayVuelta("Gerona (GRO)","Buenos Aires (EZE)", "9", "14", 3);
-        rumbopage.esperarXSegundos(300);
+        rumbopage.preferenciasIdayVuelta2("Barcelona (BCN)","Buenos Aires (EZE)", "10", "17", 1);
+        rumbopage.esperarXSegundos(1000);
         rumbopage.irAVuelo();
-        rumbopage.esperarXSegundos(7000);
-        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
-        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+        rumbopage.esperarXSegundos(5000);
+        elegirVuelo.elegirVueloMejor();
+        rumbopage.esperarXSegundos(3000);
+        elegirServicio.servicioClassic();
+        rumbopage.esperarXSegundos(3000);
+        registroUsuarios.registroDatos("Mario", "Castro");
+        rumbopage.esperarXSegundos(3000);
+        String resultadoEsperado="Introduce la fecha de nacimiento (a partir de 12 años)";
+        Assertions.assertEquals(FixEncoding.fix(resultadoEsperado), rumbopage.findElement(By.xpath(
+                "//span[contains(text(), 'Introduce la fecha de nacimiento')]")).getText());
 
     }
 
     @Test
-    public void TC006_reserva_vuelo_ida_filtro_clase_y_metodo_de_pago_campo_telefono_vacío(){
+    public void TC006_reserva_vuelo_ida_filtro_clase_y_metodo_de_pago_campo_telefono_vacio(){
         rumbopage = new RumboHomePage(DriverFactory.getDriver());
         elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
+        elegirServicio = new ElegirServicio(DriverFactory.getDriver());
+        registroUsuarios = new RegistroDatosUsuarios(DriverFactory.getDriver());
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irASoloIda();
-        //rumbopage.fechaIda();
-        //rumbopage.elegirFechaIda("septiembre 2023");
-        // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)", "16",1);
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
-        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
-        Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
+        elegirVuelo.elegirVuelo();
+        rumbopage.esperarXSegundos(3000);
+        elegirServicio.servicioClassic();
+        rumbopage.esperarXSegundos(3000);
+        registroUsuarios.registroDatos("Mario", "Castro");
+        rumbopage.esperarXSegundos(3000);
+        String resultadoEsperado="Introduce un número de teléfono válido";
+        Assertions.assertEquals(FixEncoding.fix(resultadoEsperado), rumbopage.findElement(By.xpath(
+                "//div[@data-testid='next-phone-input-group-errormessage']")).getText());
 
     }
 }

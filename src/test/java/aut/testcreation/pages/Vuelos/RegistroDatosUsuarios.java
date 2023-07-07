@@ -11,6 +11,8 @@ public class RegistroDatosUsuarios extends SeleniumWrapper {
     }
 
 
+    By locatorNombre = By.xpath("//input[@name='name']");
+
     By locatorApellido = By.xpath("//input[@name='surname']");
 
     By locatorCodigoPostal = By.xpath("//input[@name='address']");
@@ -22,14 +24,15 @@ public class RegistroDatosUsuarios extends SeleniumWrapper {
 
 
 
-    public void registroDatos( String apellido, String cp){
+    public void registroDatos( String nombre, String apellido ){
 
-
+        esperarXSegundos(500);
+        agregarTexto(esperarPorElemento(locatorNombre),nombre);
         esperarXSegundos(500);
         agregarTexto(esperarPorElemento(locatorApellido),apellido);
         esperarXSegundos(500);
-        agregarTexto(esperarPorElemento(locatorCodigoPostal),cp);
-        esperarXSegundos(500);
+        //agregarTexto(esperarPorElemento(locatorCodigoPostal),cp);
+        //esperarXSegundos(500);
         click(esperarPorElemento(locatorBtnSiguiente));
         esperarXSegundos(500);
         //click(esperarPorElemento(locatorPrefijo));
