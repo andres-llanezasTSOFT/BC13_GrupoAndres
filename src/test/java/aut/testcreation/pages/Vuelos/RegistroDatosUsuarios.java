@@ -10,20 +10,12 @@ public class RegistroDatosUsuarios extends SeleniumWrapper {
         super(driver);
     }
 
-    By locatorNombre = By.xpath("//input[@name='name']");
 
     By locatorApellido = By.xpath("//input[@name='surname']");
-
-    By locatorMail = By.xpath("//input[@type='email']");
-
-    By locatorPrefijo = By.xpath("//span[contains(text(), 'Prefijo')]");
-
-    By locatorPrefijoArg = By.xpath("//div[contains(text(), '+54')]");
 
     By locatorCodigoPostal = By.xpath("//input[@name='address']");
 
     By locatorBtnSiguiente = By.xpath("//button[contains(text(),'Siguiente')]");
-
 
 
 

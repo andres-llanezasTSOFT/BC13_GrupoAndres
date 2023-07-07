@@ -38,7 +38,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
         rumbopage.irIdayVuelta();
-        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)", "11", "17", 2);
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(8000);
@@ -97,7 +97,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         //rumbopage.fechaIda();
         //rumbopage.elegirFechaIda("septiembre 2023");
         // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.preferenciasIdayVuelta("Barcelona (BCN)","Buenos Aires (EZE)", "13", "29", 2);
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(8000);
@@ -126,7 +126,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         //rumbopage.fechaIda();
         //rumbopage.elegirFechaIda("septiembre 2023");
         // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIdayVuelta("Gerona (GRO)","Buenos Aires (EZE)");
+        rumbopage.preferenciasIdayVuelta("Gerona (GRO)","Buenos Aires (EZE)", "9", "14", 3);
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
