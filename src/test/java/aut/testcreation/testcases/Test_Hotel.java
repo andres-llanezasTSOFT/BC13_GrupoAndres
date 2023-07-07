@@ -39,7 +39,6 @@ public class Test_Hotel extends SeleniumTestBase {
     @Test
     public void CP013_reserva_hotel_ingreso_datos_de_seleccion(){
         busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 3, 0);
-        //Assertions.assertEquals("rumbo.es/s/hdp/search?datefrom", filtrosHotel.getUrlTitle());
         String resultadoEsperado= "Alojamientos en Buenos Aires";
         Assertions.assertEquals(resultadoEsperado, filtrosHotel.getUrlTitle());
     }
