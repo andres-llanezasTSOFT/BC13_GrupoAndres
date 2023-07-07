@@ -3,6 +3,10 @@ package aut.testcreation.pages.hoteles;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
 
 public class FiltrosHotel extends SeleniumWrapper {
     public FiltrosHotel(WebDriver driver) {
@@ -14,74 +18,102 @@ public class FiltrosHotel extends SeleniumWrapper {
     By btnAplicar = By.xpath("//div[contains(text(),\"Aplicar\")]");
 
     By locatorFiltroServicio = By.cssSelector("#Pill-FacilitiesContainer");
-    By locatorServicio = By.cssSelector("#lb_list_accomodation_facilities");
+    By locatorServicio;
 
 
     By locatorFiltroValoracion = By.cssSelector("#Pill-RatingContainer");
-    By locatorValoracion = By.xpath("//li[contains(@id, \"exp_elem_rating\")]");
-
+    By locatorValoracion;
 
     By locatorFiltroEstrellas = By.cssSelector("#Pill-StarsContainer");
-    By locatorCantEstrellas = By.cssSelector("#exp_elem_hotel_stars_3");
+    By locatorEstrellas;
 
 
-    By locatorFiltroRegimen = By.xpath("#Pill-MealContainer");
-    By locatorRegimen = By.xpath("//ul/li[3]//following::div[contains(text(),\"Desayuno\")]");
+    By locatorFiltroRegimen = By.cssSelector("#Pill-MealContainer");
+    By locatorRegimen;
 
-    By btnPrecioHotel = By.xpath("//iframe[@id='google_ads_top_frame']");
+    By btnPrecioHotel = By.xpath("//a/div[contains(text(),\"en total\")]");
 
-    By locatorCantidadResultadosBusqueda = By.xpath("//div[@class='sc-hAtEyd iuHLWW']");
+    By locatorCantidadResultadosBusqueda = By.xpath("//div[contains(text(), 'resultados encontrados')]");
 
     By locatorMensajeSinResultados = By.xpath("//div[contains(text(),'No se encuentran resultados')]");
 
 
-    By locatorDetalle = By.xpath("//div[@role=\"button\"]//descendant::div[@xpath=\"3\"]");
+    By locatorDetalle;
 
 //VER_____________________________________________________________________________________________________________
 
 
 
-    public void filtro_precio(String valor1, String valor2){
+    public void filtro_precio(int valor1, int valor2){
         click(esperarPorElemento(locatorFiltroPrecio));
-        //mover btnRangoMinimo y btnRangoMaximo hasta que queden iguales a los valores pasados por string
+        esperarXSegundos(2000);
+        drag_and_drop(btnRangoMínimo, valor1);
+        esperarXSegundos(2000);
+        drag_and_drop(btnRangoMaximo, valor2);
         click(btnAplicar);
+        esperarXSegundos(2000);
     }
-    public void filtro_servicios_una_condicion(String item){
+    public void filtro_servicios(String item){
         click(esperarPorElemento(locatorFiltroServicio));
-        seleccionarComboBoxPortextoVisible(locatorServicio,item);
+        esperarXSegundos(5000);
+        click(crear_locator_servicio(item));
         click(btnAplicar);
     }
-    public void filtro_servicios_dos_condiciones(String item1, String item2){
+    public void filtro_dos_servicios(String item1, String item2){
         click(esperarPorElemento(locatorFiltroServicio));
-        seleccionarComboBoxPortextoVisible(locatorServicio,item1);
-        seleccionarComboBoxPortextoVisible(locatorServicio,item2);
+        esperarXSegundos(5000);
+        click(crear_locator_servicio(item1));
+        click(crear_locator_servicio(item2));
         click(btnAplicar);
     }
-    public void filtro_valoracion(String valor){
-        esperarPorElemento(locatorFiltroValoracion);
-        seleccionarComboBoxPortextoVisible(locatorValoracion,valor);
+
+    public void filtro_valoracion(String value){
+        click(esperarPorElemento(locatorFiltroValoracion));
+        crear_locator_valoracion(value);
         click(btnAplicar);
+
     }
-    public void filtro_estrellas(String cantidad){
+
+    public void filtro_estrellas(int  cantidad){
         click(esperarPorElemento(locatorFiltroEstrellas));
-        seleccionarComboBoxPortextoVisible(locatorCantEstrellas,cantidad);
+        click(crear_locator_estrellas(cantidad));
         click(btnAplicar);
     }
     public void filtro_regimen(String condicion){
         click(esperarPorElemento(locatorFiltroRegimen));
-        seleccionarComboBoxPortextoVisible(locatorRegimen,condicion);
+        click(crear_locator_regimen(condicion));
         click(btnAplicar);
     }
 
-
-    public void seleccionar_primer_hotel(){
-        click(esperarPorElemento(btnPrecioHotel));
+    public By crear_locator_regimen(String item){
+        return locatorRegimen = By.xpath("//div[normalize-space()='"+item+"']");
+    }
+    public By crear_locator_servicio(String item){
+        return locatorServicio = By.xpath("//div[contains(text(),'" + item +"')]");
     }
 
-    public String ver_detalle(){return findElement(locatorDetalle).getText();}
+    public By crear_locator_detalle(String resultado){
+        return By.xpath("//span[contains(text(),'" + resultado +"')]");
+    }
 
-    public int ver_cantidad_resultados() {
-        int value = extraer_int_de_String(locatorCantidadResultadosBusqueda);
+    public By crear_locator_valoracion(String item){
+        return locatorValoracion = By.xpath("//div[contains(text(),'" + item +"')]");
+    }
+
+    public By crear_locator_estrellas(int item){
+        return locatorEstrellas = By.xpath("//li[contains(@id,'" + item +"')]");
+    }
+
+    public void seleccionar_primer_resultado() {
+        super.seleccionar_primer_resultado(btnPrecioHotel);
+    }
+
+    public boolean verificar_detalle(String verificar){
+        return findElement(crear_locator_detalle(verificar)).getText().equals(verificar);
+    }
+
+    public String ver_cantidad_resultados() {
+        String value= getText(locatorCantidadResultadosBusqueda);
         return value;
     }
 

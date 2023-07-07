@@ -43,12 +43,22 @@ public class RumboHomePage extends SeleniumWrapper {
 
     By locatorDiaIda = By.xpath("//button[contains(text(),'19')]");
 
+    By locatorIrAHotel = By.xpath("//ul/li/div/a[@title='Hoteles']");
+
+    By locatorCaptchaExiste = By.xpath("//h2[contains(text(),'Comprobando']");
+
     By btnAumentarNroAdultos = By.xpath("//button[@aria-label='Aumentar el número de adultos']//*[name()='svg']");
 
     By locatorNoCookies = By.xpath("//button[@class='iubenda-cs-reject-btn iubenda-cs-btn-primary']");
 
 
     //acciones del sitio
+
+    By btnCheckCaptcha = By.xpath("//input[@type=\"checkbox\"]");
+
+
+    //acciones del sitio
+
 
     public void irASoloIda() {
         click(esperarPorElemento(locatorIda));
@@ -71,6 +81,21 @@ public class RumboHomePage extends SeleniumWrapper {
 
     public By crear_locator_dia(String number){
         return locatorOpcionDia = By.xpath("//button[contains(text(),"+ number+")]");
+    }
+
+    public void irABusquedaHotel() {
+        click((esperarPorElemento(locatorIrAHotel)));
+    }
+
+    public void validarCaptcha () {
+        esperarXSegundos(800);
+        if (isDisplayed(locatorCaptchaExiste)) {
+            esperarXSegundos(7000);
+            if(isEnabled(btnCheckCaptcha)){
+                click(esperarPorElemento(btnCheckCaptcha));
+            }
+        }
+
     }
 
 

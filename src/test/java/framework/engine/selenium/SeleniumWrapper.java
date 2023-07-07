@@ -1,6 +1,7 @@
 package framework.engine.selenium;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -108,6 +109,11 @@ public class SeleniumWrapper {
         }
     }
 
+    public void seleccionar_primer_resultado(By locator){
+        List<WebElement> resultados= buscarElementosWeb(locator);
+        resultados.get(0).click();
+    }
+
    public void seleccionarComboBoxPortextoVisible(By locator,String textoVisible){
         WebElement ddlMes = driver.findElement(locator);
         Select selectorMes = new Select(ddlMes);
@@ -139,17 +145,12 @@ public class SeleniumWrapper {
         return driver.getTitle();
     }
 
-    public int extraer_int_de_String(By locator) {
-        String resultado = findElement(locator).getText();
-        StringBuilder sb = new StringBuilder();
-        for (char c : resultado.toCharArray()) {
-            if (Character.isDigit(c)) {
-                sb.append(c);
-            }
-        }
-        return Integer.parseInt(sb.toString());
+    public void drag_and_drop(By locator, int value){
+        int y=0;
+        WebElement slider = this.getDriver().findElement(locator);
+        Actions action = new Actions(this.getDriver());
+        action.dragAndDropBy(slider, value, y).perform();
     }
-
 
 
 
