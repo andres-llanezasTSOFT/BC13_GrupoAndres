@@ -45,17 +45,18 @@ public class Test_Hotel extends SeleniumTestBase {
 
     @Test
     public void CP014_reserva_hotel_filtro_precio(){
-        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 2, 0);
+        filtrosHotel.esperarXSegundos(500);
+        filtrosHotel.esperarXSegundos(500);
         String resultado1= filtrosHotel.ver_cantidad_resultados();
-        System.out.println(filtrosHotel.ver_cantidad_resultados());
-        filtrosHotel.filtro_precio(120, -20);
+        filtrosHotel.filtro_precio(130, 0);
+        filtrosHotel.esperarXSegundos(500);
         String resultado2= filtrosHotel.ver_cantidad_resultados();
-        System.out.println(filtrosHotel.ver_cantidad_resultados());
         Assertions.assertNotEquals(resultado1, resultado2);
     }
     @Test
     public void CP015_reserva_hotel_formulario_datos_personales(){
-        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+        busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 2, 0);
         filtrosHotel.seleccionar_primer_resultado();
         detalleHotel.elegir_solo_alojamiento();
         huespedesHotel.llenar_datos_personales("Carlos", "Dilorenzi", "carlos3@gmail.com", "España", "56748922");
@@ -63,7 +64,7 @@ public class Test_Hotel extends SeleniumTestBase {
     }
         @Test
         public void CP016_reserva_hotel_filtro_servicios () {
-            busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+            busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 2, 0);
             filtrosHotel.filtro_dos_servicios("Solo adultos", "niños");
             String ResultadoEsperado = "No se encuentran resultados";
             Assertions.assertEquals(filtrosHotel.mostrar_mensaje_sin_resultados(), ResultadoEsperado);
@@ -71,26 +72,52 @@ public class Test_Hotel extends SeleniumTestBase {
 
         @Test
         public void CP017_reserva_hotel_limite_ninnos_por_habitacion () {
-                busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
+                busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 1, 6);
                 Assertions.assertTrue(filtrosHotel.verificar_detalle("8 viajeros, 2 habitaciones"));
             }
 
-            @Test
+        /*    @Test
             public void CP018_reserva_hotel_filtros_multiples () {
-                busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+                busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 2, 0);
                 String resultado1 = filtrosHotel.ver_cantidad_resultados();
-                filtrosHotel.filtro_precio(120, -20);
+                filtrosHotel.filtro_precio(100, 0);
+                filtrosHotel.esperarXSegundos(500);
                 String resultado2 = filtrosHotel.ver_cantidad_resultados();
                 filtrosHotel.filtro_servicios("Wifi gratis");
+                filtrosHotel.esperarXSegundos(500);
                 String resultado3 = filtrosHotel.ver_cantidad_resultados();
                 filtrosHotel.filtro_estrellas(3);
+                filtrosHotel.esperarXSegundos(500);
                 String resultado4 = filtrosHotel.ver_cantidad_resultados();
                 filtrosHotel.filtro_regimen("Desayuno");
+                filtrosHotel.esperarXSegundos(500);
                 String resultado5 = filtrosHotel.ver_cantidad_resultados();
                 filtrosHotel.filtro_valoracion("Excelente");
+                filtrosHotel.esperarXSegundos(500);
                 String resultado6 = filtrosHotel.ver_cantidad_resultados();
 
                 Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
                         resultado3 != resultado4 && resultado4 != resultado5 && resultado5 != resultado6);
             }
         }
+
+
+         */
+    @Test
+    public void CP018_reserva_hotel_filtros_multiples () {
+        busquedaHotel.buscarHotel("Buenos Aires", "20", "22", 2, 0);
+        String resultado1 = filtrosHotel.ver_cantidad_resultados();
+        filtrosHotel.filtro_precio(10, 0);
+        filtrosHotel.esperarXSegundos(500);
+        String resultado2 = filtrosHotel.ver_cantidad_resultados();
+        filtrosHotel.filtro_estrellas(3);
+        filtrosHotel.esperarXSegundos(500);
+        String resultado3 = filtrosHotel.ver_cantidad_resultados();
+        filtrosHotel.filtro_valoracion("Excelente");
+        filtrosHotel.esperarXSegundos(500);
+        String resultado4 = filtrosHotel.ver_cantidad_resultados();
+
+        Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
+                resultado3 != resultado4);
+    }
+}

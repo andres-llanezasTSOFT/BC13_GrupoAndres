@@ -3,6 +3,7 @@ package framework.engine.selenium;
 import framework.engine.utils.LoadProperties;
 
 import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -57,9 +58,9 @@ public class SeleniumTestBase {
     }
 
 
-  /* @AfterEach
+  @AfterEach
     void close(){
         driver.quit();
-    }*/
+    }
 
 }
