@@ -1,6 +1,5 @@
 package aut.testcreation.pages.Vuelos;
 
-import framework.engine.selenium.SeleniumTestBase;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

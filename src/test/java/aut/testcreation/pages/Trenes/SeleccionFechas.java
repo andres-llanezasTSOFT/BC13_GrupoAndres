@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 public class SeleccionFechas extends SeleniumWrapper {
 
     By locatorOrigen = By.xpath("//input[@placeholder='Origen']");
-    By locatorValueOrigen = By.xpath("//input[@aria-label='Origen' and @value='Almería'] ");
-    By locatorValueDestino = By.xpath("//input[@aria-label='Destino' and @value='Madrid'] ");
     By locatorDestino = By.xpath("//input[@placeholder='Destino']");
     By opcionFechas;
     By locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
@@ -30,7 +28,8 @@ public class SeleccionFechas extends SeleniumWrapper {
     public void llenarCamposVacios(String origen, String destino, String indiceIda, String indieVuelta){
 
         agregarTexto(esperarPorElemento(locatorOrigen),origen);
-        click(esperarPorElemento(locatorDestino));
+        esperarXSegundos(500);
+        //click(esperarPorElemento(locatorDestino));
         agregarTexto(esperarPorElemento(locatorDestino),destino);
         click(esperarPorElemento(locatorBtnFechas));
         click(esperarPorElemento(fechasIndices(indiceIda)));

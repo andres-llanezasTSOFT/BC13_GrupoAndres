@@ -9,8 +9,6 @@ import static framework.engine.utils.Constants.BASE_URL_AUT;
 
 public class RumboHomePage extends SeleniumWrapper {
 
-    private WebDriver driver;
-
     public RumboHomePage(WebDriver driver) {
         super(driver);
     }
@@ -130,20 +128,6 @@ public class RumboHomePage extends SeleniumWrapper {
             }
         }
     }
-
-   public void irSeleccionClase(){
-
-       click(esperarPorElemento(locatorSeleccionClase));
-    }
-
-
-    /*public void irClaseTurista() {
-        click(esperarPorElemento(locatorTurista));
-    }*/
-
-    /*public void noCookies() {
-        click(esperarPorElemento(locatorNoCookies));
-    }*/
 
     public void navegarAlSitio() {
         navigateTo(BASE_URL_AUT);

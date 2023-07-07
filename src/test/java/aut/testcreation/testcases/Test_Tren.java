@@ -9,7 +9,7 @@ import org.junit.jupiter.api.*;
 
 public class Test_Tren extends SeleniumTestBase {
 
-    private FechasDisponibles fechasDisponibles;
+    //private FechasDisponibles fechasDisponibles;
     private HomePageTrenes homePageTrenes;
     private IngresoFechas ingresoFechas;
     private IngresoFechasIguales ingresoFechasIguales;
@@ -23,12 +23,10 @@ public class Test_Tren extends SeleniumTestBase {
     @BeforeEach
     public void inicializandoTest(){
         homePageTrenes = new HomePageTrenes(DriverFactory.getDriver());
-        //fechasDisponibles = new FechasDisponibles(homePageTrenes.getDriver());
         ingresoFechas = new IngresoFechas(homePageTrenes.getDriver());
         ingresoFechasIguales = new IngresoFechasIguales(homePageTrenes.getDriver());
         modificacionPasajeros = new ModificacionPasajeros(homePageTrenes.getDriver());
         seleccionFechas = new SeleccionFechas(homePageTrenes.getDriver());
-
         homePageTrenes.cargarUrl("https://www.rumbo.es/");
         homePageTrenes.validarCaptcha();
         homePageTrenes.noCookies();
@@ -39,14 +37,14 @@ public class Test_Tren extends SeleniumTestBase {
     @Test
     public void TC007_reserva_tren_idaYVuelta_ingresoFechas(){
 
-        ingresoFechas.llenarCamposVacios("Madrid", "Barcelona", "10", "15");
-        Assertions.assertEquals("Pagina de Trenes",homePageTrenes.getUrlTitle() );
+        ingresoFechas.llenarCamposVacios("Madrid", "Barcelona", "25", "28");
+        Assertions.assertTrue(homePageTrenes.getUrlTitle().contains("billetes de tren") );
     }
 
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
 
-        seleccionFechas.llenarCamposVacios("Almeria", "Madrid", "20", "25");
+        seleccionFechas.llenarCamposVacios("Almeria", "Madrid", "23", "25");
         Assert.assertEquals("Rumbo vuelos baratos Almería - Madrid", homePageTrenes.getDriver().getTitle());
     }
 

@@ -11,7 +11,7 @@ public class IngresoFechas extends SeleniumWrapper {
 
     By locatorOrigen = By.xpath("//input[@placeholder='Origen']");
     By LocatorOrigenM = By.xpath("//input[@aria-label='Origen' and @value='Madrid']");
-    By locatorDestino = By.xpath("//input[@placeholder='Destino']");
+    By locatorDestino = By.xpath("//input[@aria-label='Destino']");
     By opcionFechas;
     By locatorCantidadPredefinida = By.xpath("//span[contains(text(),'1 pasajero')]");
     By locatorBtnFechas = By.xpath("//label[normalize-space()='Fecha de ida']");
@@ -37,11 +37,9 @@ public class IngresoFechas extends SeleniumWrapper {
 
     public void llenarCamposVacios(String origen, String destino, String indiceIda, String indieVuelta){
 
-        //click(esperarPorElemento(locatorOrigen));
+        click(esperarPorElemento(locatorOrigen));
         agregarTexto(esperarPorElemento(locatorOrigen),origen);
-        esperarXSegundos(200);
-        //click(esperarPorElemento(locatorDestino));
-        esperarXSegundos(500);
+        esperarXSegundos(700);
         agregarTexto(esperarPorElemento(locatorDestino),destino);
         click(esperarPorElemento(locatorBtnFechas));
         click(esperarPorElemento(fechasIndices(indiceIda)));

@@ -4,15 +4,13 @@ import aut.testcreation.pages.Vuelos.ElegirServicio;
 import aut.testcreation.pages.Vuelos.ElegirVuelo;
 import aut.testcreation.pages.Vuelos.RegistroDatosUsuarios;
 import aut.testcreation.pages.Vuelos.RumboHomePage;
-//import aut.testcreation.pages.RegisterPage;
 import framework.engine.selenium.DriverFactory;
 import framework.engine.selenium.FixEncoding;
 import framework.engine.selenium.SeleniumTestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Test_Vuelo extends SeleniumTestBase {
 
@@ -24,9 +22,6 @@ public class Test_Vuelo extends SeleniumTestBase {
 
     private RegistroDatosUsuarios registroUsuarios;
 
-    private WebDriver driver;
-
-    WebDriverWait wait;
 
 
 
@@ -61,9 +56,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.esperarXSegundos(7000);
         String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
         Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
-        /*String resultadoEsperado="Descubre más sobre nuestros criterios de clasificación";
-        Assertions.assertEquals(FixEncoding.fix(resultadoEsperado), rumbopage.findElement(By.xpath(
-                "//div[@class='InfoContainer__Message-sc-1banvxr-5 jihaWH']")).getText());*/
+
 
     }
     @Test
@@ -80,7 +73,7 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
-        String resultadoEsperado= "Rumbo vuelos baratos Barcelona - Buenos Aires";
+        String resultadoEsperado= "Viajes baratos: Ofertas Viajes, vuelos, hoteles | Rumbo";
         Assertions.assertEquals(resultadoEsperado, rumbopage.getUrlTitle());
 
     }

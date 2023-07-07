@@ -18,9 +18,7 @@ public class AnnadirHuespedesHotel extends SeleniumWrapper {
     By locatorInputApellido = By.xpath("//input[@name=\"surname\"]");
     By locatorInputMail = By.xpath("//input[@name=\"email\"]");
     By btnPrefijo = By.xpath("//button[@aria-haspopup]");
-    //By locatorPrefijo = By.xpath("");
     By locatorInputTelefono = By.xpath("//input[@name=\"phone\"]");
-
     By locatorFormGreenCheck = By.xpath("//form[@class]//span[contains(@data-testid,\"input-end-valid\")]");
 
 

@@ -40,24 +40,3 @@ public class HomePageTrenes extends SeleniumWrapper {
 
 }
 
-
-
-/*[16:41] Andrés Llanezas
-
-        esto para usar dentro del metodo:click(esperarPorElemento(locatorFecha));
-
-        click(crear_locator_dia(diaPartida));
-
-        click(crear_locator_dia(diaVuelta));
-
-        [16:41] Andrés Llanezas
-
-public By crear_locator_dia(String number){
-
-        return locatorOpcionDia = By.xpath("//button[contains(text(),"+ number+")]");
-
-        }
-
-        [16:42] Andrés Llanezas
-
-        y con los Bys declarar: By locatorDia;*/
