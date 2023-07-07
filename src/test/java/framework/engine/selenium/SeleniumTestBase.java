@@ -2,10 +2,11 @@ package framework.engine.selenium;
 
 import framework.engine.utils.LoadProperties;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import java.util.Properties;
@@ -13,7 +14,8 @@ import java.util.Properties;
 public class SeleniumTestBase {
 
     private DriverFactory driverFactory;
-    private WebDriver driver;
+
+    WebDriver driver;
     static Properties properties;
 
 
@@ -51,12 +53,13 @@ public class SeleniumTestBase {
         String browserName = properties.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.inicializarDriver(browserName);
+        //driver = new ChromeDriver();
     }
 
 
-   @AfterEach
+  /* @AfterEach
     void close(){
         driver.quit();
-    }
+    }*/
 
 }

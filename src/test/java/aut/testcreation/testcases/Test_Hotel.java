@@ -1,7 +1,7 @@
 package aut.testcreation.testcases;
 
 
-import aut.testcreation.pages.*;
+import aut.testcreation.pages.Vuelos.RumboHomePage;
 import aut.testcreation.pages.hoteles.AnnadirHuespedesHotel;
 import aut.testcreation.pages.hoteles.BusquedaHotel;
 import aut.testcreation.pages.hoteles.DetalleHotel;
@@ -19,7 +19,9 @@ public class Test_Hotel extends SeleniumTestBase {
     private DetalleHotel detalleHotel;
     private AnnadirHuespedesHotel huespedesHotel;
 
-   @BeforeEach
+
+
+    @BeforeEach
     public void inicializar_page() {
        rumbopage = new RumboHomePage(DriverFactory.getDriver());
        busquedaHotel = new BusquedaHotel(DriverFactory.getDriver());
@@ -60,36 +62,36 @@ public class Test_Hotel extends SeleniumTestBase {
         huespedesHotel.llenar_datos_personales("Carlos", "Dilorenzi", "carlos3@gmail.com", "España", "56748922");
         Assertions.assertEquals(4, huespedesHotel.cantidad_inputs_validos());
     }
-    @Test
-    public void CP016_reserva_hotel_filtro_servicios(){
-        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        filtrosHotel.filtro_dos_servicios("Solo adultos", "niños");
-        String ResultadoEsperado = "No se encuentran resultados";
-        Assertions.assertEquals(filtrosHotel.mostrar_mensaje_sin_resultados(),ResultadoEsperado);
-    }
+        @Test
+        public void CP016_reserva_hotel_filtro_servicios () {
+            busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+            filtrosHotel.filtro_dos_servicios("Solo adultos", "niños");
+            String ResultadoEsperado = "No se encuentran resultados";
+            Assertions.assertEquals(filtrosHotel.mostrar_mensaje_sin_resultados(), ResultadoEsperado);
+        }
 
-    @Test
-    public void CP017_reserva_hotel_limite_ninnos_por_habitacion() {
-        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
-        Assertions.assertTrue(filtrosHotel.verificar_detalle("8 viajeros, 2 habitaciones"));
-    }
+        @Test
+        public void CP017_reserva_hotel_limite_ninnos_por_habitacion () {
+                busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 1, 6);
+                Assertions.assertTrue(filtrosHotel.verificar_detalle("8 viajeros, 2 habitaciones"));
+            }
 
-    @Test
-    public void CP018_reserva_hotel_filtros_multiples(){
-        busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
-        String resultado1= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_precio(120, -20);
-        String resultado2= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_servicios("Wifi gratis");
-        String resultado3= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_estrellas(3);
-        String resultado4= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_regimen("Desayuno");
-        String resultado5= filtrosHotel.ver_cantidad_resultados();
-        filtrosHotel.filtro_valoracion("Excelente");
-        String resultado6= filtrosHotel.ver_cantidad_resultados();
+            @Test
+            public void CP018_reserva_hotel_filtros_multiples () {
+                busquedaHotel.buscarHotel("Buenos Aires", "16", "18", 2, 0);
+                String resultado1 = filtrosHotel.ver_cantidad_resultados();
+                filtrosHotel.filtro_precio(120, -20);
+                String resultado2 = filtrosHotel.ver_cantidad_resultados();
+                filtrosHotel.filtro_servicios("Wifi gratis");
+                String resultado3 = filtrosHotel.ver_cantidad_resultados();
+                filtrosHotel.filtro_estrellas(3);
+                String resultado4 = filtrosHotel.ver_cantidad_resultados();
+                filtrosHotel.filtro_regimen("Desayuno");
+                String resultado5 = filtrosHotel.ver_cantidad_resultados();
+                filtrosHotel.filtro_valoracion("Excelente");
+                String resultado6 = filtrosHotel.ver_cantidad_resultados();
 
-        Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
-                resultado3!= resultado4 && resultado4 != resultado5 && resultado5 != resultado6);
-    };
-}
+                Assertions.assertTrue(resultado1 != resultado2 && resultado2 != resultado3 &&
+                        resultado3 != resultado4 && resultado4 != resultado5 && resultado5 != resultado6);
+            }
+        }

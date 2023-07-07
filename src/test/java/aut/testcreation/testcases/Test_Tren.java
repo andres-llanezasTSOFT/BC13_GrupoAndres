@@ -7,10 +7,13 @@ import framework.engine.selenium.SeleniumTestBase;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
+
 public class Test_Tren extends SeleniumTestBase {
 
     private FechasDisponibles fechasDisponibles;
     private HomePageTrenes homePageTrenes;
+
+
 
     @BeforeEach
     public void inicializandoTest(){
@@ -34,8 +37,7 @@ public class Test_Tren extends SeleniumTestBase {
 
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
-
-        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Madrid", "20", "25");
+        fechasDisponibles.llenarCamposVacios_clickFechas("Almería", "Madrid", "20", "25");
         Assert.assertEquals("rumbo.es", homePageTrenes.getDriver().getTitle());
 
     }
