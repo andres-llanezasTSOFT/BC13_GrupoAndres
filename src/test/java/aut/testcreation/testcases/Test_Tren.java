@@ -45,11 +45,9 @@ public class Test_Tren extends SeleniumTestBase {
 
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
-<<<<<<< HEAD
 
         seleccionFechas.llenarCamposVacios("Almeria", "Madrid", "20", "25");
         Assert.assertEquals("Rumbo vuelos baratos Almería - Madrid", homePageTrenes.getDriver().getTitle());
-
     }
 
     @Test
