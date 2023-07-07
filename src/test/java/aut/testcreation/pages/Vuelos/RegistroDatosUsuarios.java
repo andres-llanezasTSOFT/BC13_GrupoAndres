@@ -14,7 +14,15 @@ public class RegistroDatosUsuarios extends SeleniumWrapper {
 
     By locatorApellido = By.xpath("//input[@name='surname']");
 
-    By locatorMail = By.xpath("//input[@id='lmn_login_widget_modal__email-input']");
+    By locatorMail = By.xpath("//input[@type='email']");
+
+    By locatorPrefijo = By.xpath("//span[contains(text(), 'Prefijo')]");
+
+    By locatorPrefijoArg = By.xpath("//div[contains(text(), '+54')]");
+
+    By locatorCodigoPostal = By.xpath("//input[@name='address']");
+
+    By locatorBtnSiguiente = By.xpath("//button[contains(text(),'Siguiente')]");
 
 
 
@@ -22,16 +30,20 @@ public class RegistroDatosUsuarios extends SeleniumWrapper {
 
 
 
-    public void registroDatos(String nombre, String apellido, String mail){
+    public void registroDatos( String apellido, String cp){
 
 
-        esperarXSegundos(500);
-        agregarTexto(esperarPorElemento(locatorNombre),nombre);
         esperarXSegundos(500);
         agregarTexto(esperarPorElemento(locatorApellido),apellido);
         esperarXSegundos(500);
-        agregarTexto(esperarPorElemento(locatorMail),mail);
+        agregarTexto(esperarPorElemento(locatorCodigoPostal),cp);
         esperarXSegundos(500);
+        click(esperarPorElemento(locatorBtnSiguiente));
+        esperarXSegundos(500);
+        //click(esperarPorElemento(locatorPrefijo));
+        //agregarTexto(esperarPorElemento(locatorPrefijoArg),prefijo);
+        //esperarXSegundos(500);
+
        /* agregarTexto(esperarPorElemento(locatorPassword),contrasena);
         esperarXSegundos(500);
 

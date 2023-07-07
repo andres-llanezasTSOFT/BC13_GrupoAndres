@@ -35,7 +35,7 @@ public class Test_Tren extends SeleniumTestBase {
     @Test
     public void TC008_reserva_tren_seleccionFecha(){
         homePageTrenes.irATrenes();
-        fechasDisponibles.llenarCamposVacios_clickFechas("Almeria", "Ciudad Real");
+        fechasDisponibles.llenarCamposVacios_clickFechas("Almería", "Ciudad Real");
 
 
     }

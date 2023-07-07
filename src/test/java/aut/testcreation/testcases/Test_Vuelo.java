@@ -107,12 +107,11 @@ public class Test_Vuelo extends SeleniumTestBase {
         rumbopage.esperarXSegundos(3000);
         elegirServicio.servicioClassic();
         rumbopage.esperarXSegundos(3000);
-        registroUsuarios.registroDatos("Jorge","Castro", "marcostsoft@gmail.com");
+        registroUsuarios.registroDatos("Castro", "5300");
         rumbopage.esperarXSegundos(3000);
-
-
-
-
+        String resultadoEsperado="Introduce el nombre";
+        Assertions.assertEquals(FixEncoding.fix(resultadoEsperado), rumbopage.findElement(By.xpath(
+                "//span[contains(text(),'Introduce el nombre')]")).getText());
 
 
     }
@@ -123,11 +122,11 @@ public class Test_Vuelo extends SeleniumTestBase {
         elegirVuelo = new ElegirVuelo(DriverFactory.getDriver());
         rumbopage.navegarAlSitio();
         rumbopage.noCookies();
-        rumbopage.irASoloIda();
+        rumbopage.irIdayVuelta();
         //rumbopage.fechaIda();
         //rumbopage.elegirFechaIda("septiembre 2023");
         // rumbopage.esperarXSegundos(300);
-        rumbopage.preferenciasIda("Barcelona (BCN)","Buenos Aires (EZE)");
+        rumbopage.preferenciasIdayVuelta("Gerona (GRO)","Buenos Aires (EZE)");
         rumbopage.esperarXSegundos(300);
         rumbopage.irAVuelo();
         rumbopage.esperarXSegundos(7000);
